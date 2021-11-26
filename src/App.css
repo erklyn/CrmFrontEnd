@@ -11,10 +11,13 @@
   height: 4rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 70vw;
 }
-
+.musteri-endis{
+  display: flex;
+  justify-content: center;
+}
 
 .musteri-inside {
   color: white;

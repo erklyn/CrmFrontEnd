@@ -4,7 +4,7 @@ import * as Icons from "react-icons/io";
 import './header.css';
 import { navItems } from './NavbarItems';
 
-const Header = ({ }) => {
+const Header = () => {
   return (
     <>
       <nav className='navbar'>

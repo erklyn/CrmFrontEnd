@@ -9,7 +9,7 @@ import Axios from 'axios';
    
 
     
-export default function Customers() {
+export default function Departman() {
     const [musteriler , setMusteriler] = useState([]);
     
     
@@ -20,7 +20,7 @@ export default function Customers() {
     useEffect(()=>{
         
     
-        apiPath = 'http://localhost:3001/api/get';
+        apiPath = 'http://localhost:3001/api/get/'+params.departman;
         
     
         Axios.get(apiPath).then((response)=>{
