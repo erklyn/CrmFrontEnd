@@ -93,11 +93,11 @@ export default function NewCustomerPage() {
               ...INITIAL_FORM_STATE
             }}
             validationSchema ={FORM_VALIDATION}
-            onSubmit={ (values) =>{
+            onSubmit={ (values ,{ resetForm}) =>{
               Axios.post("http://localhost:3001/api/insert",{values}).then(()=>{
                 alert('succesfull insert');
               });
-              
+              resetForm();
               
             }}
             >

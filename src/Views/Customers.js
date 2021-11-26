@@ -1,7 +1,9 @@
 import React,{useState , useEffect} from 'react';
-import { Grid } from '@mui/material';
+import { Grid , Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+
+//import '../App.css';
 
    
 
@@ -21,24 +23,29 @@ export default function Customers() {
         <div>
             {musteriler.map(musteri => {
                 return (
+                    <div className='musteri-outside'>
                     <Grid container>
-                        
-                           
-                        <Grid item xs={3} margin={2}>
-                        <h1>{musteri.musteriUnvani}</h1>
-                        </Grid>
-                        <Grid item xs={3} margin={2}>
-                        <h1>{musteri.musteriUlke}</h1>
-                        </Grid>
-                        <Grid item xs={3} margin={2}>
-                        <h1>{musteri.gorusmeTarih}</h1>
-                        </Grid>
-                        <Grid item  margin={2}>
-                        <Link style={{ display: "block", margin: "1rem 0" }}
+                        <Grid item xs={12} margin={2}>
+                        <div className='musteri-inside'>
+                        <Typography>Şirket:</Typography>
+                        <h3 className='musteri-h3'>{musteri.musteriUnvani}</h3> 
+                        <Typography>Görüşen Kişi:</Typography>
+                        <h3 className='musteri-h3'>{musteri.firstName}</h3> 
+                        <Typography>Departman:</Typography>
+                        <h3 className='musteri-h3'>{musteri.departman}</h3> 
+                        <Typography>Şehir:</Typography>
+                        <h3 className='musteri-h3'>{musteri.musteriSehir}</h3> 
+                        <Link 
                             to={`/musteriler/${musteri.id}`}
-                            key={musteri.id}>MüşteriDetayı</Link>
+                            key={musteri.id}
+                            className ='musteri-link'>
+                        
+                            MüşteriDetayı
+                        </Link>
+                        </div>
                         </Grid>
                     </Grid>
+                    </div>
                 )
             })}
         </div>

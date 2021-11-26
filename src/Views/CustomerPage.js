@@ -2,7 +2,7 @@ import React ,{useState , useEffect} from 'react';
 import { Grid } from '@mui/material';
 import { useParams } from 'react-router';
 import Axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+
 
 
 export default function CustomerPage() {
@@ -23,7 +23,17 @@ export default function CustomerPage() {
              Hello
            {musteri.map(a => {
                return (
-               <h1>{a.firstName}</h1>
+               <Grid container>
+                  <Grid item xs={4}>
+                  
+                  </Grid>
+                  <Grid item xs={4}>
+
+                  </Grid>
+                  <Grid item xs={4}>
+
+                  </Grid> 
+               </Grid>
                )
            })}
                
