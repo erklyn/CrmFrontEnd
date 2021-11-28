@@ -31,7 +31,10 @@ export default function Departman() {
             {musteriler.map(musteri => {
                 return (
                     <div className='musteri-outside'>
-                    <Grid container>
+                    <Grid  container
+  direction="row"
+  justifyContent="center"
+  alignItems="center">
                         <Grid item xs={12}>
                         <div className='musteri-inside'>
                         <Typography>Şirket:</Typography>

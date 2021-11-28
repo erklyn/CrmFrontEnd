@@ -44,3 +44,9 @@
 .musteri-link:hover{
   background:#B1D4E0;
 }
+.singleMusteri-outer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
