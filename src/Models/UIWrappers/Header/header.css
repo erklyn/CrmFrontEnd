@@ -23,11 +23,13 @@
     justify-content: flex-end;
     margin-right: 2rem;
 }
-.nav-item{
+
+.nav-item {
     display: flex;
     align-items: center;
-}
-
+    height: 10vh;
+  }
+  
 .nav-item a {
     text-decoration: none;
     color: white;

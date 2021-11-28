@@ -9,7 +9,6 @@ import Departman from './Views/Departman';
 function App() {
   return (
     <div>
-       
       <Header/>
       <Routes>
       <Route path="musteriler" element={<Customers />}/>

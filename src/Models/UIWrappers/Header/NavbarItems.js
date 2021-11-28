@@ -29,13 +29,13 @@ export const navItems = [
     {
       id: 1,
       title: "İç-Satis",
-      path: "./musteriler/iç",
+      path: "./departman/ic-satis",
       cName: "submenu-item",
     },
     {
       id: 2,
       title: "Dış-Satış",
-      path: "./musteriler/dis",
+      path: "./departman/dis-satis",
       cName: "submenu-item",
     },
   ];

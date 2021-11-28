@@ -10,28 +10,24 @@ import Axios from 'axios';
 
     
 export default function Departman() {
-    const [musteriler , setMusteriler] = useState([]);
-    
-    
     let params = useParams();
-    let apiPath = '';
+    const [musteriler , setMusteriler] = useState([]);
+    const [apiPath , setApiPath] = useState('http://localhost:3001/api/get/'+params.departman);
+    
+    
     
 
     useEffect(()=>{
         
-    
-        apiPath = 'http://localhost:3001/api/get/'+params.departman;
-        
-    
         Axios.get(apiPath).then((response)=>{
-          setMusteriler(response.data);
+        setMusteriler(response.data);
           
         })
       },[]);
     
     return (
         
-        <div classnName="musteri-endis">
+        <div className="musteri-endis">
             {musteriler.map(musteri => {
                 return (
                     <div className='musteri-outside'>
