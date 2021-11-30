@@ -19,61 +19,64 @@ import trailers from '../Models/Data/trailers.json';
 
 
 const INITIAL_FORM_STATE ={
-  firstName:'',
-  lastName:'',
+  adi:'',
+  soyadi:'',
   departman:'',
-  musteriUnvani:'',
-  musteriAdresi:'',
-  musteriMail:'',
-  musteriSehir:'',
-  musteriUlke:'',
-  musteriAracTipi:'',
-  musteriIlgili:'',
-  musteriTelefon:'',
-  gorusmeKonusu:'',
-  gorusmeOzet:'',
-  gorusmeTarih:'',
+  mail:'test',
+  firmaAdi:'',
+  firmaAdresi:'',
+  firmaMail:'',
+  firmaSehir:'',
+  firmaUlke:'',
+  firmaAractipi:'',
+  firmaIlgilisi:'',
+  firmaTelefon:'',
+  konusu:'',
+  ozet:'',
+  tarih:'',
+  musteriID:2021001,
+  temsilciID:10001
 };
 
 
 const FORM_VALIDATION = Yup.object().shape({
-    firstName: Yup.string()
+    adi: Yup.string()
     .required('Lütfen isminizi giriniz!'),
 
-    lastName: Yup.string()
+    soyadi: Yup.string()
     .required('Lütfen Soyadınızı giriniz!'),
 
     departman: Yup.string()
     .required('İç Satış , Dış Satış olarak belirtiniz'),
 
-    musteriUnvani: Yup.string()
+    firmaAdi: Yup.string()
     .required('Müşteri Ünvanını giriniz!'),
 
-    musteriAdresi: Yup.string()
+    firmaAdresi: Yup.string()
     .required('Müşteri Adresini giriniz'),
 
-    musteriMail: Yup.string()
+    firmaMail: Yup.string()
     .email('Mail adresi yanlış girildi')
     .required('Lütfen müşteri mail adresini giriniz'),
 
-    musteriIlgili: Yup.string()
+    firmaIlgilisi: Yup.string()
     .required('Lütfen doldurunuz.'),
 
-    musteriTelefon: Yup.string().required('Lütfen telefon numarasını giriniz...'),
+    firmaTelefon: Yup.string().required('Lütfen telefon numarasını giriniz...'),
 
-    musteriAracTipi: Yup.string(),
+    firmaAractipi: Yup.string(),
 
-    musteriSehir: Yup.string(),
+    firmaSehir: Yup.string(),
 
-    musteriUlke: Yup.string(),
+    firmaUlke: Yup.string(),
 
-    gorusmeKonusu: Yup.string()
+    konusu: Yup.string()
     .required('Görüşme Konusunu giriniz!'),
 
-    gorusmeOzet: Yup.string()
+    ozet: Yup.string()
     .required('Lütfen görüşme özetini giriniz!'),
 
-    gorusmeTarih: Yup.date()
+    tarih: Yup.date()
     .required('Tarih giriniz'),
 
    
@@ -94,10 +97,12 @@ export default function NewCustomerPage() {
             }}
             validationSchema ={FORM_VALIDATION}
             onSubmit={ (values ,{ resetForm}) =>{
-              Axios.post("http://localhost:3001/api/insert",{values}).then(()=>{
+              
+              Axios.post("http://localhost:3001/api/insert/musteri",{values}).then(()=>{
                 alert('succesfull insert');
+                
               });
-              resetForm();
+              //resetForm();
               
             }}
             >
@@ -108,14 +113,14 @@ export default function NewCustomerPage() {
                   </Grid>
                   <Grid item xs={6}> 
                     <Textfield 
-                    name= "firstName"
+                    name= "adi"
                     label="Adınız"
                     />
                   </Grid>
 
                   <Grid item xs={6}> 
                   <Textfield 
-                    name= "lastName"
+                    name= "soyadi"
                     label="Soyadınız"
                     />
                   </Grid>
@@ -136,20 +141,20 @@ export default function NewCustomerPage() {
 
                     <Grid item xs={4}> 
                   <Textfield 
-                    name= "musteriUnvani"
+                    name= "firmaAdi"
                     label="Müşteri Ünvanı"
                     />
                   </Grid>
 
                   <Grid item xs={4}> 
                   <Textfield 
-                    name= "musteriIlgili"
+                    name= "firmaIlgilisi"
                     label="Müşteri İlgili Kişisi Adı"
                     />
                   </Grid>
                   <Grid item xs={4}> 
                   <Select
-                    name= "musteriAracTipi"
+                    name= "firmaAractipi"
                     label="Müşteri Araç Tipi"
                     options={trailers}
                     />
@@ -157,34 +162,34 @@ export default function NewCustomerPage() {
 
                   <Grid item xs={6}> 
                   <Textfield 
-                    name= "musteriMail"
+                    name= "firmaMail"
                     label="Müşteri E-Mail Adresi"
                     />
                   </Grid>
                   
                   <Grid item xs={6}> 
                   <Textfield 
-                    name= "musteriTelefon"
+                    name= "firmaTelefon"
                     label="Müşteri Telefon Numarası"
                     />
                   </Grid>
 
                   <Grid item xs={12}> 
                   <Textfield 
-                    name= "musteriAdresi"
+                    name= "firmaAdresi"
                     label="Müşteri Adresi"
                     />
                   </Grid>
                   <Grid item xs={6}> 
                   <Select
-                    name= "musteriSehir"
+                    name= "firmaSehir"
                     label="Müşteri Şehir"
                     options={city}
                     />
                   </Grid>
                   <Grid item xs={6}> 
                     <Select
-                      name='musteriUlke'
+                      name='firmaUlke'
                       label='Müşteri Ülkesi'
                       options={countries} 
                       />
@@ -202,21 +207,21 @@ export default function NewCustomerPage() {
 
                   <Grid item xs={6}> 
                   <Textfield 
-                    name= "gorusmeKonusu"
+                    name= "konusu"
                     label="Görüşme Konusu"
                     />
                   </Grid>
 
                   <Grid item xs={6}> 
                   <DateTimePicker
-                    name= "gorusmeTarih"
+                    name= "tarih"
                     label="Görüşme Tarihi"
                     />
                   </Grid>
                 
                   <Grid item xs={12}> 
                   <Textfield 
-                    name= "gorusmeOzet"
+                    name= "ozet"
                     label="Görüşme Özeti"
                     multiline={true}
                     rows={4}

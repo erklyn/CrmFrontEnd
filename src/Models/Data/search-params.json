@@ -1,9 +1,5 @@
 {
-    "musteriUnvani": "Müşteri Şirketi Unvanı",
-    "musteriAracTipi": "Müşteri Araç Tipi",
-    "musteriSehir": "Müşteri Şehri",
-    "firstName": "Serin Treyler Temsilcisi",
-    "departman": "Satış Departmanı",
-    "lastName":"Serin Treyler Temsilcisi Soyadı"
-    
+    "firmaAdi": "Müşteri Şirketi Unvanı",
+    "firmaAractipi": "Müşteri Araç Tipi",
+    "firmaSehir": "Müşteri Şehri"
 }

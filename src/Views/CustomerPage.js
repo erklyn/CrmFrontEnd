@@ -11,6 +11,9 @@ import { Paper } from '@mui/material';
 export default function CustomerPage() {
 
     const [musteri , setMusteri] = useState([]);
+    const [temsilci , setTemsilci] = useState([]);
+    const [gorusme , setGorusme] = useState([]);
+
     let params = useParams();
     const path = '/musteri-duzenle/'+params.id;
     function getDate(gorusmeDa) {
@@ -34,6 +37,11 @@ export default function CustomerPage() {
           setMusteri(response.data);
           
         })
+        Axios.get('http://localhost:3001/api/get/gorusme/'+params.id+'').then((response)=>{
+          setGorusme(response.data);
+          
+        })
+        
       },[]);
     
   
@@ -42,6 +50,10 @@ export default function CustomerPage() {
           
             
            {musteri.map(a => {
+              Axios.get('http://localhost:3001/api/get/temsilci/'+a.temsilciID+'').then((response)=>{
+                setTemsilci(response.data);
+                
+              })
                return (
                 <Grid container
                 marginTop={1}
@@ -60,7 +72,7 @@ export default function CustomerPage() {
                         
                         Müşteri
                     </Typography>
-                          {a.musteriUnvani}
+                          {a.firmaAdi}
                       </Typography>
                    </Paper>
                  </Grid>
@@ -71,7 +83,7 @@ export default function CustomerPage() {
                         
                         Müşteri İlgili Kişisi
                     </Typography>
-                          {a.musteriIlgili}
+                          {a.firmaIlgilisi}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -82,7 +94,7 @@ export default function CustomerPage() {
                         
                         Telefon Numarası
                     </Typography>
-                          {a.musteriTelefon}
+                          {a.firmaTelefon}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -93,7 +105,7 @@ export default function CustomerPage() {
                         
                         Müşteri Mail Adresi
                     </Typography>
-                          {a.musteriMail}
+                          {a.firmaMail}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -104,7 +116,7 @@ export default function CustomerPage() {
                         
                         Müşteri Adresi
                     </Typography>
-                          {a.musteriAdresi}
+                          {a.firmaAdresi}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -115,7 +127,7 @@ export default function CustomerPage() {
                         
                         Müşteri Şehir
                     </Typography>
-                          {a.musteriSehir}
+                          {a.firmaSehir}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -126,7 +138,7 @@ export default function CustomerPage() {
                         
                         Müşteri Ülke
                     </Typography>
-                          {a.musteriUlke}
+                          {a.firmaUlke}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -137,7 +149,7 @@ export default function CustomerPage() {
                         
                         Müşteri Araç Tipi
                     </Typography>
-                          {a.musteriAracTipi}
+                          {a.firmaAractipi}
                       </Typography>
                    </Paper>
                   </Grid>
@@ -154,11 +166,13 @@ export default function CustomerPage() {
                <Grid item xs={12} md={12}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
-                  Temsilci
+                  TEMSİLCİMİZ
                   </Typography>
-                          
-                
-                  
+                    {temsilci.map( a=> {
+                      return (
+                        <Typography align='center' variant='h4'>  {a.adi+' '+ a.soyadi +' Departman : ' +a.departman+' '} </Typography>
+                      )
+                    })}
                    </Paper>
                   </Grid>
                </Grid>
@@ -169,12 +183,35 @@ export default function CustomerPage() {
                <Grid item xs={12} md={12}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
-                  Görüşmeler
+                  YAPILAN GÖRÜŞMELER
                   </Typography>
-                          
-                
-                  
-                   </Paper>
+                 </Paper>
+                 {gorusme.map(gorusme => {
+                return (
+                    
+                    <Grid  container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        
+                        <Grid item xs={12}>
+                        <div className='musteri-inside'>
+                        <Typography>Görüşme Tarihi:</Typography>
+                        <h3 className='musteri-h3'>{getDate(gorusme.tarih)}</h3> 
+                        <Typography>Görüşme Konusu:</Typography>
+                        <h3 className='musteri-h3'>{gorusme.konusu}</h3>
+                        <Typography>Görüşme Özeti:</Typography>
+                        <h3 className='musteri-h3'>{gorusme.ozet}</h3> 
+                        
+                       
+                        </div>
+                        </Grid>
+                        
+
+                    </Grid>
+                    )
+                  })}
                   </Grid>
                </Grid>
 

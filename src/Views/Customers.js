@@ -48,7 +48,7 @@ export default function Customers() {
             }}
             
             onSubmit={ (values) =>{
-              Axios.get("http://localhost:3001/api/"+values.searchParameter+"/"+values.searchValue).then((response)=>{
+              Axios.get("http://localhost:3001/api/get/"+values.searchParameter+"/"+values.searchValue).then((response)=>{
                 setMusteriler(response.data);
                 console.log(values.searchValue);
               })
@@ -97,14 +97,12 @@ export default function Customers() {
                         
                         <Grid item xs={12}>
                         <div className='musteri-inside'>
-                        <Typography>Görüşen Kişi:</Typography>
-                        <h3 className='musteri-h3'>{musteri.firstName}</h3> 
                         <Typography>Firma:</Typography>
-                        <h3 className='musteri-h3'>{musteri.musteriUnvani}</h3> 
-                        <Typography>Departman:</Typography>
-                        <h3 className='musteri-h3'>{musteri.departman}</h3> 
+                        <h3 className='musteri-h3'>{musteri.firmaAdi}</h3> 
                         <Typography>Şehir:</Typography>
-                        <h3 className='musteri-h3'>{musteri.musteriSehir}</h3> 
+                        <h3 className='musteri-h3'>{musteri.firmaSehir}</h3>
+                        <Typography>Araç Tipi:</Typography>
+                        <h3 className='musteri-h3'>{musteri.firmaAractipi}</h3> 
                         <Link 
                             to={`/musteriler/${musteri.id}`}
                             key={musteri.id}
