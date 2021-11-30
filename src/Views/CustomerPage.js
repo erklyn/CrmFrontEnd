@@ -44,16 +44,13 @@ export default function CustomerPage() {
            {musteri.map(a => {
                return (
                 <Grid container
-                margin={1}
+                marginTop={1}
                 spacing={1}
                 direction="row">
                    <Grid item xs={12} md={12}>
 
-                   <Link to={path}></Link>
-                    <Typography align='left'>
-                      {a.firstName}  {a.lastName}  |  {getDate(a.gorusmeTarih)} 
-                       
-                    </Typography> 
+                   <Link to={path} className='musteri-link'>Müşteri Düzenle</Link>
+                    
                    
                   </Grid>
                  <Grid item xs={12} md={6} lg={3}>
@@ -144,36 +141,46 @@ export default function CustomerPage() {
                       </Typography>
                    </Paper>
                   </Grid>
-                  <Grid item xs={12} md={6}>
-                 <Paper elevation={2} variant='outlined'>
-                 <Typography align='center' variant='h5'>
-                      <Typography align='center' variant='h6'>
-                        
-                       Görüşme Konusu
-                    </Typography>
-                          {a.gorusmeKonusu}
-                      </Typography>
-                   </Paper>
-                  </Grid> 
-                  <Grid item xs={12} md={6}>
-                 <Paper elevation={2} variant='outlined'>
-                 <Typography align='center' variant='h5'>
-                      <Typography align='center' variant='h6'>
-                        
-                        Görüşme Özeti
-                    </Typography>
-                          {a.gorusmeOzet}
-                      </Typography>
-                   </Paper>
-                  </Grid>
+                 
                   
 
                </Grid>
                )
            })}
+           <Grid container
+                marginTop={1}
+                spacing={1}
+                direction="row">
+               <Grid item xs={12} md={12}>
+                 <Paper elevation={2} variant='outlined'>
+                 <Typography align='center' variant='h5'>
+                  Temsilci
+                  </Typography>
+                          
+                
+                  
+                   </Paper>
+                  </Grid>
+               </Grid>
+              <Grid container
+                marginTop={1}
+                spacing={1}
+                direction="row">
+               <Grid item xs={12} md={12}>
+                 <Paper elevation={2} variant='outlined'>
+                 <Typography align='center' variant='h5'>
+                  Görüşmeler
+                  </Typography>
+                          
+                
+                  
+                   </Paper>
+                  </Grid>
+               </Grid>
+
                
                <Grid container
-                margin={1}
+                marginTop={1}
                 spacing={1}
                 direction="row">
                <Grid item xs={12} md={12}>
