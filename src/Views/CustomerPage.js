@@ -26,7 +26,7 @@ export default function CustomerPage() {
            month = '0' + month;
           }       
 
-          return (year+'-' + month + '-'+dt);
+          return (dt+'-' + month + '-'+year);
     }
     
     useEffect(()=>{
@@ -166,23 +166,27 @@ export default function CustomerPage() {
                       </Typography>
                    </Paper>
                   </Grid>
-                  <Grid item xs={12} md={12}>
-                 <Paper elevation={2} variant='outlined'>
-                 <Typography align='center' variant='h5'>
-                      <Typography align='center' variant='h6'>
-                        
-                         TEKLİFLER
-                    </Typography>
-                          
-                      </Typography>
-                   </Paper>
-                  </Grid>
+                  
 
                </Grid>
                )
            })}
                
-               
+               <Grid container
+                margin={1}
+                spacing={1}
+                direction="row">
+               <Grid item xs={12} md={12}>
+                 <Paper elevation={2} variant='outlined'>
+                 <Typography align='center' variant='h5'>
+                  TEKLİFLER
+                  </Typography>
+                          
+                
+                  
+                   </Paper>
+                  </Grid>
+               </Grid>
         
         </div>
     )

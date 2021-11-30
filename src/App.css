@@ -4,23 +4,15 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.musteri-outside{
+
+
+
+.musteri-inside {
+  width : 100%;
   margin-top: 1rem;
   background:#2E8BC0;
   border-radius: 25px;
   height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 70vw;
-}
-.musteri-endis{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.musteri-inside {
   color: white;
   font-size: 1.2rem;
   display: flex;
@@ -48,5 +40,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }

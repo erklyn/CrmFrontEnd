@@ -3,24 +3,32 @@ import { Grid , Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import Axios from 'axios';
+import {Formik , Form} from 'formik';
+import Textfield from '../Models/UIWrappers/Textfield';
+import Select from '../Models/UIWrappers/Select';
+import Button from '../Models/UIWrappers/Button';
+import searchparams from '../Models/Data/search-params.json';
 
-//import '../App.css';
 
    
 
     
 export default function Customers() {
     const [musteriler , setMusteriler] = useState([]);
-    
+    const [apiPath , setApiPath] = useState('http://localhost:3001/api/get');
+    const INITIAL_FORM_STATE = {
+        searchParameter: '',
+        searchValue:'',
+    };
     
     let params = useParams();
-    let apiPath = '';
+    
     
 
     useEffect(()=>{
         
     
-        apiPath = 'http://localhost:3001/api/get';
+        
         
     
         Axios.get(apiPath).then((response)=>{
@@ -31,21 +39,68 @@ export default function Customers() {
     
     return (
         
-        <div className="musteri-endis">
+            
+        <div>
+            <div className='searchBar'>
+            <Formik
+            initialValues ={{
+              ...INITIAL_FORM_STATE
+            }}
+            
+            onSubmit={ (values) =>{
+              Axios.get("http://localhost:3001/api/"+values.searchParameter+"/"+values.searchValue).then((response)=>{
+                setMusteriler(response.data);
+                console.log(values.searchValue);
+              })
+            }}
+            >
+                    <Form>
+                        <Grid container
+                        marginTop={1}
+                        spacing={1}
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Grid item xs={4}>
+                            <Select 
+                            name='searchParameter'
+                            label='Arama bölümü seçiniz.'
+                            options={searchparams}
+                            />
+                            </Grid>
+                            <Grid item xs={4}>
+                            <Textfield
+                            name= "searchValue"
+                            label="Arama"/>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <Button>
+                                    ARA
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Form>
+                </Formik>
+
+            </div>
+
             {musteriler.map(musteri => {
                 return (
-                    <div className='musteri-outside'>
+                    
                     <Grid  container
-  direction="row"
-  justifyContent="center"
-  alignItems="center">
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
                         
                         <Grid item xs={12}>
                         <div className='musteri-inside'>
-                        <Typography>Şirket:</Typography>
-                        <h3 className='musteri-h3'>{musteri.musteriUnvani}</h3> 
                         <Typography>Görüşen Kişi:</Typography>
                         <h3 className='musteri-h3'>{musteri.firstName}</h3> 
+                        <Typography>Firma:</Typography>
+                        <h3 className='musteri-h3'>{musteri.musteriUnvani}</h3> 
                         <Typography>Departman:</Typography>
                         <h3 className='musteri-h3'>{musteri.departman}</h3> 
                         <Typography>Şehir:</Typography>
@@ -62,7 +117,7 @@ export default function Customers() {
                         
 
                     </Grid>
-                    </div>
+                   
                 )
             })}
         </div>
