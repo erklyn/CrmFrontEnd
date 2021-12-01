@@ -84,10 +84,8 @@ const FORM_VALIDATION = Yup.object().shape({
 
 export default function NewCustomerPage() {
     return (
-        <Grid container>
-      <Grid item xs={12}>
-      <br></br>
-      </Grid>
+        <Grid container marginTop={1}>
+      
       <Grid item xs={12}>
         <Container>
           <div >
@@ -102,7 +100,7 @@ export default function NewCustomerPage() {
                 alert('succesfull insert');
                 
               });
-              //resetForm();
+              resetForm();
               
             }}
             >

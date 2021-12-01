@@ -13,6 +13,8 @@ export default function CustomerPage() {
     const [musteri , setMusteri] = useState([]);
     const [temsilci , setTemsilci] = useState([]);
     const [gorusme , setGorusme] = useState([]);
+    const [teklifler , setTeklifler] = useState([]);
+    const [temsilciID , setTemsilciID] = useState(0);
 
     let params = useParams();
     const path = '/musteri-duzenle/'+params.id;
@@ -29,7 +31,7 @@ export default function CustomerPage() {
            month = '0' + month;
           }       
 
-          return (dt+'-' + month + '-'+year);
+          return (dt+' ' + month + ' '+year);
     }
     
     useEffect(()=>{
@@ -41,7 +43,12 @@ export default function CustomerPage() {
           setGorusme(response.data);
           
         })
-        
+        Axios.get('http://localhost:3001/api/get/teklif/'+params.id+'').then((response)=>{
+          setTeklifler(response.data);
+          
+        })
+        console.log(teklifler)
+
       },[]);
     
   
@@ -52,7 +59,7 @@ export default function CustomerPage() {
            {musteri.map(a => {
               Axios.get('http://localhost:3001/api/get/temsilci/'+a.temsilciID+'').then((response)=>{
                 setTemsilci(response.data);
-                
+                setTemsilciID(a.temsilciID)
               })
                return (
                 <Grid container
@@ -220,16 +227,42 @@ export default function CustomerPage() {
                 marginTop={1}
                 spacing={1}
                 direction="row">
+              <Grid item xs={12}> 
+              <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+temsilciID+'/'+params.id+''}> Yeni Teklif Ekle</Link>
+              </Grid>
                <Grid item xs={12} md={12}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
-                  TEKLİFLER
-                  </Typography>
-                          
-                
+                  TEKLİFLER 
                   
+                  </Typography> 
                    </Paper>
+
                   </Grid>
+                  {teklifler.map(teklif => {
+                return (
+                    
+                    <Grid  container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        
+                        <Grid item xs={12}>
+                        <div className='musteri-inside'>
+                        <Typography>Teklif Durumu:</Typography>
+                        <h3 className='musteri-h3'>{teklif.durum}</h3> 
+                        <Typography>Teklif Araç Tipi:</Typography>
+                        <h3 className='musteri-h3'>{teklif.aracTipi}</h3>
+                        <Typography>Teklif Birim Fiyatı:</Typography>
+                        <h3 className='musteri-h3'>{teklif.birimFiyati}</h3> 
+                        </div>
+                        </Grid>
+                        
+
+                    </Grid>
+                    )
+                  })}
                </Grid>
         
         </div>

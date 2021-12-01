@@ -9,10 +9,12 @@ const SelectWrapper = ({
 }) => {
     const { setFieldValue } = useFormikContext();
     const[field, meta] = useField(name);
+    const[value, setValue] = useField('');
 
     const handleChange = evt => {
         const { value } = evt.target;
         setFieldValue(name , value);
+        setValue(value);
     };
 
     const configSelect ={
