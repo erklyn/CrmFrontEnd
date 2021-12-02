@@ -9,20 +9,15 @@ import {
 import Axios from 'axios';
 import Textfield from '../Models/UIWrappers/Textfield';
 import Select from '../Models/UIWrappers/Select';
-import DateTimePicker from '../Models/UIWrappers/DateTimePicker';
 import Button from '../Models/UIWrappers/Button';
 import countries from '../Models/Data/countries.json';
 import city from '../Models/Data/turkey-city.json';
-import departman from '../Models/Data/departman.json';
 import trailers from '../Models/Data/trailers.json';
+import temsilciler from '../Models/Data/temsilciler.json'
 
 
 
 const INITIAL_FORM_STATE ={
-  adi:'',
-  soyadi:'',
-  departman:'',
-  mail:'test',
   firmaAdi:'',
   firmaAdresi:'',
   firmaMail:'',
@@ -31,24 +26,11 @@ const INITIAL_FORM_STATE ={
   firmaAractipi:'',
   firmaIlgilisi:'',
   firmaTelefon:'',
-  konusu:'',
-  ozet:'',
-  tarih:'',
-  musteriID:2021001,
-  temsilciID:10001
+  temsilciID:''
 };
 
 
 const FORM_VALIDATION = Yup.object().shape({
-    adi: Yup.string()
-    .required('Lütfen isminizi giriniz!'),
-
-    soyadi: Yup.string()
-    .required('Lütfen Soyadınızı giriniz!'),
-
-    departman: Yup.string()
-    .required('İç Satış , Dış Satış olarak belirtiniz'),
-
     firmaAdi: Yup.string()
     .required('Müşteri Ünvanını giriniz!'),
 
@@ -69,17 +51,6 @@ const FORM_VALIDATION = Yup.object().shape({
     firmaSehir: Yup.string(),
 
     firmaUlke: Yup.string(),
-
-    konusu: Yup.string()
-    .required('Görüşme Konusunu giriniz!'),
-
-    ozet: Yup.string()
-    .required('Lütfen görüşme özetini giriniz!'),
-
-    tarih: Yup.date()
-    .required('Tarih giriniz'),
-
-   
 });
 
 export default function NewCustomerPage() {
@@ -106,35 +77,16 @@ export default function NewCustomerPage() {
             >
               <Form>
                 <Grid container spacing={2}>
-                  <Grid item xs={12} >
-                    <Typography>Bilgileriniz</Typography>
-                  </Grid>
-                  <Grid item xs={6}> 
-                    <Textfield 
-                    name= "adi"
-                    label="Adınız"
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}> 
-                  <Textfield 
-                    name= "soyadi"
-                    label="Soyadınız"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}> 
-                  <Select
-                    name= "departman"
-                    label="Departmanınız"
-                    options={departman}
-                    />
-                  </Grid>
-
-                
-
+                 
                   <Grid item xs={12} >
                     <Typography>Müşteri Bilgileri</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Select
+                    name='temsilciID'
+                    label='Adınızı Seçiniz'
+                    options={temsilciler}
+                    />
                   </Grid>
 
                     <Grid item xs={4}> 
@@ -192,40 +144,6 @@ export default function NewCustomerPage() {
                       options={countries} 
                       />
                   </Grid>
-
-
-
-
-                  
-
-
-                  <Grid item xs={12} >
-                    <Typography>Görüşme Detaylar</Typography>
-                  </Grid>
-
-                  <Grid item xs={6}> 
-                  <Textfield 
-                    name= "konusu"
-                    label="Görüşme Konusu"
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}> 
-                  <DateTimePicker
-                    name= "tarih"
-                    label="Görüşme Tarihi"
-                    />
-                  </Grid>
-                
-                  <Grid item xs={12}> 
-                  <Textfield 
-                    name= "ozet"
-                    label="Görüşme Özeti"
-                    multiline={true}
-                    rows={4}
-                    />
-                  </Grid>
-
                   <Grid item xs={12}> 
                     <Button>
                       Yeni Müşteri Oluştur

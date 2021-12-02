@@ -13,6 +13,7 @@ import trailers from '../Models/Data/trailers.json';
 import durum from '../Models/Data/durum.json'
 import paracins from '../Models/Data/döviz.json'
 import { useParams } from 'react-router';
+import DateTimePicker from '../Models/UIWrappers/DateTimePicker';
 
 
 
@@ -29,7 +30,8 @@ const INITIAL_FORM_STATE ={
     not:'',
     birimFiyati:0,
     adet:0,
-    aracTipi:''
+    aracTipi:'',
+    teklifTarih:''
 
 }
 
@@ -54,7 +56,9 @@ const FORM_VALIDATION = Yup.object().shape({
     adet: Yup.number()
     .required('Adet sayısını sayı olarak giriniz!'),
     aracTipi: Yup.string()
-    .required('Araç Tipini Seçiniz!')
+    .required('Araç Tipini Seçiniz!'),
+    teklifTarih: Yup.date()
+    .required('Tarihi giriniz.')
 
 
 })
@@ -77,12 +81,18 @@ export default function CreatePropositionPage() {
                   alert('succesfull insert');
                   
                 });
-                //resetForm();
+                resetForm();
                 
               }}
             >
                 <Form>
                     <Grid container marginTop= {1} spacing ={1}>
+                
+                    <Grid item xs={12}>
+                        <DateTimePicker
+                        name='teklifTarih'
+                        label='Teklif verdiğiniz tarihi giriniz'/>
+                    </Grid>
                     <Grid item xs={12} md={6}>
                         <Select 
                         name='aracTipi'

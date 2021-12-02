@@ -250,12 +250,15 @@ export default function CustomerPage() {
                         
                         <Grid item xs={12}>
                         <div className='musteri-inside'>
+                        <Typography>Teklif Tarihi:</Typography>
+                        <h3 className='musteri-h3'>{getDate(teklif.teklifTarih)}</h3> 
                         <Typography>Teklif Durumu:</Typography>
                         <h3 className='musteri-h3'>{teklif.durum}</h3> 
                         <Typography>Teklif Araç Tipi:</Typography>
                         <h3 className='musteri-h3'>{teklif.aracTipi}</h3>
                         <Typography>Teklif Birim Fiyatı:</Typography>
                         <h3 className='musteri-h3'>{teklif.birimFiyati}</h3> 
+                        <Link className='musteri-link' to={'/musteri/teklif/'+teklif.id}> Teklif Detayı </Link>
                         </div>
                         </Grid>
                         
