@@ -1,4 +1,8 @@
 {
     "ic-satis" : "İç Satış",
-    "dis-satis" : "Dış Satış"
+    "dis-satis" : "Dış Satış",
+    "pazarlama": "Pazarlama",
+    "satın-alma": "Satın Alma",
+    "muhasebe" : "Muhasebe"
+
 }

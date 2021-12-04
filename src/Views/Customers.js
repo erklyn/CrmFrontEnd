@@ -15,7 +15,7 @@ import searchparams from '../Models/Data/search-params.json';
     
 export default function Customers() {
     const [musteriler , setMusteriler] = useState([]);
-    const [apiPath , setApiPath] = useState('http://localhost:3001/api/get');
+    const apiPath  = 'http://localhost:3001/api/get';
     const INITIAL_FORM_STATE = {
         searchParameter: '',
         searchValue:'',
@@ -57,7 +57,7 @@ export default function Customers() {
                     <Form>
                         <Grid container
                         marginTop={1}
-                        spacing={1}
+                        spacing={2}
                         direction="row"
                         justifyContent="center"
                         alignItems="center"
@@ -96,6 +96,10 @@ export default function Customers() {
                     >
                         
                         <Grid item xs={12}>
+                        <Link 
+                            to={`/musteriler/${musteri.id}`}
+                            key={musteri.id}
+                            className ='musteri-bar'>
                         <div className='musteri-inside'>
                         <Typography>Firma:</Typography>
                         <h3 className='musteri-h3'>{musteri.firmaAdi}</h3> 
@@ -103,14 +107,10 @@ export default function Customers() {
                         <h3 className='musteri-h3'>{musteri.firmaSehir}</h3>
                         <Typography>Araç Tipi:</Typography>
                         <h3 className='musteri-h3'>{musteri.firmaAractipi}</h3> 
-                        <Link 
-                            to={`/musteriler/${musteri.id}`}
-                            key={musteri.id}
-                            className ='musteri-link'>
+                      
                         
-                            MüşteriDetayı
-                        </Link>
                         </div>
+                        </Link>
                         </Grid>
                         
 

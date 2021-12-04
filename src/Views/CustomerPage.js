@@ -17,7 +17,7 @@ export default function CustomerPage() {
     const [temsilciID , setTemsilciID] = useState(0);
 
     let params = useParams();
-    const path = '/musteri-duzenle/'+params.id;
+    
     function getDate(gorusmeDa) {
          let date = new Date(gorusmeDa);
          let year = date.getFullYear();
@@ -66,12 +66,7 @@ export default function CustomerPage() {
                 marginTop={1}
                 spacing={1}
                 direction="row">
-                   <Grid item xs={12} md={12}>
-
-                   <Link to={path} className='musteri-link'>Müşteri Düzenle</Link>
-                    
                    
-                  </Grid>
                  <Grid item xs={12} md={6} lg={3}>
                    <Paper elevation={2} variant='outlined'>
                       <Typography align='center' variant='h5'>
@@ -246,9 +241,15 @@ export default function CustomerPage() {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
+                    spacing={2}
                     >
                         
                         <Grid item xs={12}>
+                        
+                        <Link
+                         className='musteri-bar' 
+                         to={'/musteri/teklif/'+teklif.id}
+                        >
                         <div className='musteri-inside'>
                         <Typography>Teklif Tarihi:</Typography>
                         <h3 className='musteri-h3'>{getDate(teklif.teklifTarih)}</h3> 
@@ -258,9 +259,11 @@ export default function CustomerPage() {
                         <h3 className='musteri-h3'>{teklif.aracTipi}</h3>
                         <Typography>Teklif Birim Fiyatı:</Typography>
                         <h3 className='musteri-h3'>{teklif.birimFiyati}</h3> 
-                        <Link className='musteri-link' to={'/musteri/teklif/'+teklif.id}> Teklif Detayı </Link>
+                      
                         </div>
-                        </Grid>
+                        
+                       </Link>
+                      </Grid>
                         
 
                     </Grid>

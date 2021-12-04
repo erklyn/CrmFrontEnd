@@ -12,7 +12,8 @@ const TextFieldWrapper = ({
           ...field,
           ...otherProps,
           fullWidth: true,
-          variants: 'outlined'  
+          variants: 'outlined' ,
+          margin: 'dense'
         
      };
      if (meta && meta.touched && meta.error){

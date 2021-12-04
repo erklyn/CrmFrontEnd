@@ -55,7 +55,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 export default function NewCustomerPage() {
     return (
-        <Grid container marginTop={1}>
+        <Grid container marginTop={2}>
       
       <Grid item xs={12}>
         <Container>

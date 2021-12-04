@@ -2,27 +2,33 @@ import React from 'react'
 import { Formik , Form } from 'formik';
 import * as Yup from 'yup'; 
 import {
-  Grid 
+  Grid , Container
   
 } from '@mui/material';
 import Axios from 'axios';
 import Textfield from '../Models/UIWrappers/Textfield';
 import Button from '../Models/UIWrappers/Button';
 
+
+
 const INITIAL_FORM_STATE ={
-    username: '',
+    email: '',
     password:'',
 };
 
 export default function LoginPage() {
     return (
         <Grid container
+
                 direction='column'
-                justifyContent ='center'
-                marginTop={2}
+                justifyContent ='flex-end'
+                alignItems = 'center'
+                
+                margin = {5}
+               
                 
         >
-            
+            <Container >
             <Formik initialValues ={{
                 ...INITIAL_FORM_STATE,
 
@@ -30,34 +36,37 @@ export default function LoginPage() {
              
               onSubmit={ (values) =>{
                 
-                Axios.post("http://localhost:3001/login",{values}).then(()=>{
-                  
-                });
+                
                 
               }}>
                 <Form>
-            <Grid item xs={6}>
-                <Textfield
-                name='username'
-                label='Kullanıcı Adı
-                '/>
-            </Grid>
-            <Grid item xs={6}>
-            <Textfield
-                name='password'
-                label='Şifre'
-                type='password'
-                />
-            </Grid>
-            <Grid item xs={6}>
-                <Button>
-                    Giriş
-                </Button>
-            </Grid>
+                    <Grid container direction = 'column' spacing = {2} >
+                    <Grid item xs={8}>
+                        <Textfield
+                        name='email'
+                        label='Kullanıcı Mail Adresi
+                        '/>
+                    </Grid>
+                   
+                    <Grid item xs={8}>
+                    <Textfield
+                        
+                        name='password'
+                        label='Şifre'
+                        type='password'
+                        />
+                    </Grid>
+                    
+                    <Grid item xs={6}>
+                        <Button>
+                            Giriş
+                        </Button>
+                    </Grid>
+                   </Grid>
                 </Form>
             </Formik>
            
-
+            </Container>
         </Grid>
     )
 }
