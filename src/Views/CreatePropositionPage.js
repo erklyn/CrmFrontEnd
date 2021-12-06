@@ -14,56 +14,67 @@ import durum from '../Models/Data/durum.json'
 import paracins from '../Models/Data/döviz.json'
 import { useParams } from 'react-router';
 import DateTimePicker from '../Models/UIWrappers/DateTimePicker';
+import {useCustomer} from '../Controllers/StoreSession'
+Axios.defaults.withCredentials = true;
 
 
 
-const INITIAL_FORM_STATE ={
-
-    paraBirimi: '',
-    odemeSekli: '',
-    pesinatMiktari:'',
-    vadeSure:'',
-    teslimTarihi:'',
-    teslimYeri:'',
-    durum:'',
-    neden:'',
-    not:'',
-    birimFiyati:0,
-    adet:0,
-    aracTipi:'',
-    teklifTarih:''
-
-}
-
-const FORM_VALIDATION = Yup.object().shape({
-    paraBirimi: Yup.string()
-    .required('Lütfen Para Birimi Giriniz'),
-    odemeSekli: Yup.string()
-    .required('Ödeme Şeklini giriniz'),
-    pesinatMiktari: Yup.string()
-    .required('Peşinat Miktarını giriniz. Tamamen ödendiyse hepsini yazınız.'),
-    vadeSure: Yup.string()
-    .required('Lütfen vade süresini yazınız'),
-    teslimTarihi: Yup.string()
-    .required('Ürünün teslim edileceği süreyi yazınız.'),
-    teslimYeri:Yup.string(),
-    durum: Yup.string()
-    .required('Teklif durumunu seçiniz.'),
-    neden: Yup.string(),
-    not: Yup.string(),
-    birimFiyati: Yup.number()
-    .required('Birim fiyatını Sayı olarak giriniz!'),
-    adet: Yup.number()
-    .required('Adet sayısını sayı olarak giriniz!'),
-    aracTipi: Yup.string()
-    .required('Araç Tipini Seçiniz!'),
-    teklifTarih: Yup.date()
-    .required('Tarihi giriniz.')
-
-
-})
 export default function CreatePropositionPage() {
+    const { customer } = useCustomer();
+    const INITIAL_FORM_STATE ={
+
+        paraBirimi: '',
+        odemeSekli: '',
+        pesinatMiktari:'',
+        vadeSure:'',
+        teslimTarihi:'',
+        teslimYeri:'',
+        durum:'',
+        neden:'',
+        not:'',
+        birimFiyati:0,
+        adet:0,
+        aracTipi:'',
+        teklifTarih:'',
+        temsilciID:customer.id
+        
+    
+    }
+    
+    const FORM_VALIDATION = Yup.object().shape({
+        paraBirimi: Yup.string()
+        .required('Lütfen Para Birimi Giriniz'),
+        odemeSekli: Yup.string()
+        .required('Ödeme Şeklini giriniz'),
+        pesinatMiktari: Yup.string()
+        .required('Peşinat Miktarını giriniz. Tamamen ödendiyse hepsini yazınız.'),
+        vadeSure: Yup.string()
+        .required('Lütfen vade süresini yazınız'),
+        teslimTarihi: Yup.string()
+        .required('Ürünün teslim edileceği süreyi yazınız.'),
+        teslimYeri:Yup.string(),
+        durum: Yup.string()
+        .required('Teklif durumunu seçiniz.'),
+        neden: Yup.string(),
+        not: Yup.string(),
+        birimFiyati: Yup.number()
+        .required('Birim fiyatını Sayı olarak giriniz!'),
+        adet: Yup.number()
+        .required('Adet sayısını sayı olarak giriniz!'),
+        aracTipi: Yup.string()
+        .required('Araç Tipini Seçiniz!'),
+        teklifTarih: Yup.date()
+        .required('Tarihi giriniz.')
+    
+    
+    })
+
+
+    
+    
     let params = useParams();
+    
+    console.log(customer.id)
     return (
         <Grid container marginTop={1} spacing={1}
         direction="row">
@@ -72,7 +83,7 @@ export default function CreatePropositionPage() {
             initialValues ={{
                 ...INITIAL_FORM_STATE,
                 musteriID: params.musteriID,
-                temsilciID: params.temsilciID,
+                temsilciAdi:customer.adi
               }}
               validationSchema ={FORM_VALIDATION}
               onSubmit={ (values ,{ resetForm}) =>{

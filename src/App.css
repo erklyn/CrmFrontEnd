@@ -44,3 +44,10 @@
   align-items: center;
   justify-content: center;
 }
+.homepageStacks{
+  text-decoration: none;
+  color:black;
+}
+.homepageStacks:hover{
+  color:#B1D4E0;
+}

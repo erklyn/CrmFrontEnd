@@ -43,3 +43,23 @@
 .nav-item a:hover{
     background: #B1D4E0;
 }
+
+.logout {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+  }
+  
+.logout a {
+    text-decoration: none;
+    color: white;
+    font-size : 1.2rem;
+    margin-right: 2rem;
+    padding: 6px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-out;
+}
+.logout a:hover{
+    background: red;
+}

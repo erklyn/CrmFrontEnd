@@ -5,7 +5,7 @@ import Axios from 'axios';
 import { Paper } from '@mui/material';
 
 
-
+Axios.defaults.withCredentials = true;
 
 export default function PropositionPage() {
 

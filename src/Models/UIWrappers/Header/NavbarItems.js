@@ -17,25 +17,36 @@ export const navItems = [
       path: "./yeni-musteri",
       cName: "nav-item",
     },
-    //{
-    //  id: 4,
-    //  title: "Contact Us",
-    //  path: "./contactus",
-     // cName: "nav-item",
-    //},
+    
   ];
   
-  export const musteriDropdown = [
+  
+  export const navItemsAdmin = [
     {
       id: 1,
-      title: "İç-Satis",
-      path: "./departman/ic-satis",
-      cName: "submenu-item",
+      title: "AnaSayfa",
+      path: "./",
+      cName: "nav-item",
     },
     {
       id: 2,
-      title: "Dış-Satış",
-      path: "./departman/dis-satis",
-      cName: "submenu-item",
+      title: "Müşteriler",
+      path: "./musteriler",
+      cName: "nav-item",
     },
+    {
+      id: 3,
+      title: "Yeni Müşteri Ekle",
+      path: "./yeni-musteri",
+      cName: "nav-item",
+    },
+    {
+      id: 4,
+      title: "Yeni Temsilci Ekle",
+      path: "./register",
+      cName: "nav-item",
+    },
+    
   ];
+  
+  

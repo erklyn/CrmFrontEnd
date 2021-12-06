@@ -10,14 +10,15 @@ import Textfield from '../Models/UIWrappers/Textfield';
 import Button from '../Models/UIWrappers/Button';
 import Select from '../Models/UIWrappers/Select';
 import departmans from '../Models/Data/departman.json';
-
+Axios.defaults.withCredentials = true;
 
 const INITIAL_FORM_STATE ={
-    email: '',
+    username:'',
+    mail: '',
     password:'',
-    name:'',
+    adi:'',
     departman:'',
-    surname:''
+    soyadi:''
 };
 
 
@@ -38,7 +39,7 @@ export default function CreateUser() {
              
               onSubmit={ (values) =>{
                 
-                Axios.post("http://localhost:3001/register",{values}).then((response)=>{
+                Axios.post("http://localhost:3001/auth/register",{values}).then((response)=>{
                   console.log(response);
                 });
                 
@@ -47,19 +48,19 @@ export default function CreateUser() {
                     <Grid container spacing = {2}>
                         <Grid item xs={6}>
                             <Textfield
-                            name='name'
-                            label='Temsilci Adı Soyadı
+                            name='adi'
+                            label='Temsilci Adı 
                             '/>
                         </Grid>
                         <Grid item xs={6}>
                             <Textfield
-                            name='surname'
-                            label='Temsilci Adı Soyadı
+                            name='soyadi'
+                            label='Temsilci  Soyadı
                             '/>
                         </Grid>
                         <Grid item xs={6}>
                             <Textfield
-                            name='email'
+                            name='mail'
                             label='Temsilci Mail Adresi
                             '/>
                         </Grid>
@@ -68,6 +69,12 @@ export default function CreateUser() {
                             name='departman'
                             label='Departman'
                             options={departmans}
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Textfield
+                            name='username'
+                            label='Kullanıcı Adı'
                             />
                         </Grid>
                         <Grid item xs={6}>

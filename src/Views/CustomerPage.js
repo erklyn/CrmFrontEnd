@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom'
 import Axios from 'axios';
 import { Paper } from '@mui/material';
 
-
+Axios.defaults.withCredentials = true;
 
 
 export default function CustomerPage() {
 
     const [musteri , setMusteri] = useState([]);
-    const [temsilci , setTemsilci] = useState([]);
     const [gorusme , setGorusme] = useState([]);
     const [teklifler , setTeklifler] = useState([]);
     const [temsilciID , setTemsilciID] = useState(0);
@@ -57,10 +56,7 @@ export default function CustomerPage() {
           
             
            {musteri.map(a => {
-              Axios.get('http://localhost:3001/api/get/temsilci/'+a.temsilciID+'').then((response)=>{
-                setTemsilci(response.data);
-                setTemsilciID(a.temsilciID)
-              })
+              
                return (
                 <Grid container
                 marginTop={1}
@@ -170,11 +166,7 @@ export default function CustomerPage() {
                  <Typography align='center' variant='h5'>
                   TEMSİLCİMİZ
                   </Typography>
-                    {temsilci.map( a=> {
-                      return (
-                        <Typography align='center' variant='h4'>  {a.adi+' '+ a.soyadi +' Departman : ' +a.departman+' '} </Typography>
-                      )
-                    })}
+                    
                    </Paper>
                   </Grid>
                </Grid>
@@ -188,6 +180,11 @@ export default function CustomerPage() {
                   YAPILAN GÖRÜŞMELER
                   </Typography>
                  </Paper>
+                 </Grid>
+                 <Grid item xs={12}> 
+                  <Link className='musteri-link' to={'/musteriler/yeni-gorusme/'+params.id+''}> Yeni Görüşme Ekle</Link>
+                  </Grid>
+
                  {gorusme.map(gorusme => {
                 return (
                     
@@ -214,7 +211,7 @@ export default function CustomerPage() {
                     </Grid>
                     )
                   })}
-                  </Grid>
+                  
                </Grid>
 
                
@@ -222,9 +219,7 @@ export default function CustomerPage() {
                 marginTop={1}
                 spacing={1}
                 direction="row">
-              <Grid item xs={12}> 
-              <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+temsilciID+'/'+params.id+''}> Yeni Teklif Ekle</Link>
-              </Grid>
+              
                <Grid item xs={12} md={12}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
@@ -233,6 +228,9 @@ export default function CustomerPage() {
                   </Typography> 
                    </Paper>
 
+                  </Grid>
+                  <Grid item xs={12}> 
+                  <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+temsilciID+'/'+params.id+''}> Yeni Teklif Ekle</Link>
                   </Grid>
                   {teklifler.map(teklif => {
                 return (

@@ -13,47 +13,63 @@ import Button from '../Models/UIWrappers/Button';
 import countries from '../Models/Data/countries.json';
 import city from '../Models/Data/turkey-city.json';
 import trailers from '../Models/Data/trailers.json';
-import temsilciler from '../Models/Data/temsilciler.json'
+import { useNavigate } from 'react-router-dom';
+import { useCustomer } from '../Controllers/StoreSession';
+
+Axios.defaults.withCredentials = true;
 
 
 
-const INITIAL_FORM_STATE ={
-  firmaAdi:'',
-  firmaAdresi:'',
-  firmaMail:'',
-  firmaSehir:'',
-  firmaUlke:'',
-  firmaAractipi:'',
-  firmaIlgilisi:'',
-  firmaTelefon:'',
-  temsilciID:''
-};
-
-
-const FORM_VALIDATION = Yup.object().shape({
-    firmaAdi: Yup.string()
-    .required('Müşteri Ünvanını giriniz!'),
-
-    firmaAdresi: Yup.string()
-    .required('Müşteri Adresini giriniz'),
-
-    firmaMail: Yup.string()
-    .email('Mail adresi yanlış girildi')
-    .required('Lütfen müşteri mail adresini giriniz'),
-
-    firmaIlgilisi: Yup.string()
-    .required('Lütfen doldurunuz.'),
-
-    firmaTelefon: Yup.string().required('Lütfen telefon numarasını giriniz...'),
-
-    firmaAractipi: Yup.string(),
-
-    firmaSehir: Yup.string(),
-
-    firmaUlke: Yup.string(),
-});
 
 export default function NewCustomerPage() {
+
+  const {customer} = useCustomer();
+
+  const INITIAL_FORM_STATE ={
+    firmaAdi:'',
+    firmaAdresi:'',
+    firmaMail:'',
+    firmaSehir:'',
+    firmaUlke:'',
+    firmaAractipi:'',
+    firmaIlgilisi:'',
+    firmaTelefon:'',
+    temsilciID:customer.ID,
+    temsilciAdi:customer.adi
+  };
+  
+  
+  const FORM_VALIDATION = Yup.object().shape({
+      firmaAdi: Yup.string()
+      .required('Müşteri Ünvanını giriniz!'),
+  
+      firmaAdresi: Yup.string()
+      .required('Müşteri Adresini giriniz'),
+  
+      firmaMail: Yup.string()
+      .email('Mail adresi yanlış girildi')
+      .required('Lütfen müşteri mail adresini giriniz'),
+  
+      firmaIlgilisi: Yup.string()
+      .required('Lütfen doldurunuz.'),
+  
+      firmaTelefon: Yup.string().required('Lütfen telefon numarasını giriniz...'),
+  
+      firmaAractipi: Yup.string(),
+  
+      firmaSehir: Yup.string(),
+  
+      firmaUlke: Yup.string(),
+  });
+
+
+
+
+
+
+
+
+   let navigate = useNavigate();
     return (
         <Grid container marginTop={2}>
       
@@ -72,6 +88,7 @@ export default function NewCustomerPage() {
                 
               });
               resetForm();
+              navigate('/musteriler')
               
             }}
             >
@@ -80,13 +97,6 @@ export default function NewCustomerPage() {
                  
                   <Grid item xs={12} >
                     <Typography>Müşteri Bilgileri</Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Select
-                    name='temsilciID'
-                    label='Adınızı Seçiniz'
-                    options={temsilciler}
-                    />
                   </Grid>
 
                     <Grid item xs={4}> 
