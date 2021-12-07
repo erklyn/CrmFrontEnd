@@ -34,7 +34,7 @@ export default function HomePageTeklifler() {
                return(
             <Grid item xs={12} margin={1} padding={1}> 
             <Paper>  
-            <Link className='homepageStacks' to={'/musteriler/'+a.musteriID}>
+            <Link className='homepageStacks' to={'/musteri/teklif/'+a.id}>
             <Typography>
                 {a.temsilciAdi}  , {a.id} numaralı Teklif'i sisteme yükledi.
             </Typography>

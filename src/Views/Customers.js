@@ -7,7 +7,7 @@ import Textfield from '../Models/UIWrappers/Textfield';
 import Select from '../Models/UIWrappers/Select';
 import Button from '../Models/UIWrappers/Button';
 import searchparams from '../Models/Data/search-params.json';
-import jwt_decode from 'jwt-decode';
+
 
 
 Axios.defaults.withCredentials = true;
@@ -22,7 +22,6 @@ export default function Customers() {
 
 
     const [musteriler , setMusteriler] = useState([]);
-    const [user,setUser]=useState((null));
     const apiPath  = 'http://localhost:3001/api/get';
     const INITIAL_FORM_STATE = {
         searchParameter: '',

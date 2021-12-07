@@ -152,7 +152,16 @@ export default function CustomerPage() {
                    </Paper>
                   </Grid>
                  
-                  
+                  <Grid item xs={12} md={12}>
+                 <Paper elevation={2} variant='outlined'>
+                 <Typography align='center' variant='h5'>
+                  TEMSİLCİMİZ
+                  </Typography>
+                  <Typography align='center' variant='h4'>
+                   {a.temsilciAdi}
+                  </Typography>
+                   </Paper>
+                  </Grid>
 
                </Grid>
                )
@@ -161,14 +170,7 @@ export default function CustomerPage() {
                 marginTop={1}
                 spacing={1}
                 direction="row">
-               <Grid item xs={12} md={12}>
-                 <Paper elevation={2} variant='outlined'>
-                 <Typography align='center' variant='h5'>
-                  TEMSİLCİMİZ
-                  </Typography>
-                    
-                   </Paper>
-                  </Grid>
+               
                </Grid>
               <Grid container
                 marginTop={1}

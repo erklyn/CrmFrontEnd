@@ -7,7 +7,22 @@ import { Link } from 'react-router-dom';
 Axios.defaults.withCredentials = true;
 
 export default function HomePageTamamlanmamışTeklifler() {
-    const today = new Date();
+    function getDate(gorusmeDa) {
+        let date = new Date(gorusmeDa);
+        let year = date.getFullYear();
+        let month = date.getMonth()+1;
+        let dt = date.getDate();
+
+         if (dt < 10) {
+         dt = '0' + dt;
+         }
+         if (month < 10) {
+          month = '0' + month;
+         }       
+
+         return (dt+' ' + month + ' '+year);
+   }
+
     const [redTeklifler , setRedTeklifler] = useState([{}]);
     useEffect(()=>{
         
@@ -33,9 +48,9 @@ export default function HomePageTamamlanmamışTeklifler() {
                return(
             <Grid item xs={12} margin={1} padding={1}> 
             <Paper>  
-            <Link className='homepageStacks' to={'/musteri/teklif'+a.id}>
+            <Link className='homepageStacks' to={'/musteri/teklif/'+a.id}>
             <Typography>
-                {a.temsilciAdi}  |  {a.durum} | {a.neden}  | {a.teklifTarih}
+                {a.temsilciAdi}  |  {a.durum} | {a.neden}  | {getDate(a.teklifTarih)}
             </Typography>
 
             </Link>

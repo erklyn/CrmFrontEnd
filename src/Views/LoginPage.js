@@ -1,6 +1,5 @@
-import React , { useEffect }from 'react'
+import React from 'react'
 import { Formik , Form } from 'formik';
-import * as Yup from 'yup'; 
 import {
   Grid , Container
   
@@ -52,7 +51,10 @@ export default function LoginPage() {
                     navigate('/');
                     
                   });
-                
+                  instance.post('http://localhost:3001/auth/currentUser').then((response) =>{
+        
+                    setCustomer(response.data)
+                })
                 
                 
               }}>
