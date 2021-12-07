@@ -29,7 +29,7 @@ export default function HomePageTamamlanmamışTeklifler() {
         
 
         
-        Axios.get('http://localhost:3001/api/get/teklifRed').then((response)=>{
+        Axios.get('https://serin-crm.herokuapp.com/api/get/teklifRed').then((response)=>{
           setRedTeklifler(response.data);
           
           

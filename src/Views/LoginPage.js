@@ -46,12 +46,12 @@ export default function LoginPage() {
               }}
              
               onSubmit={ (values) =>{
-                instance.post("http://localhost:3001/auth/login",{values}).then((response)=>{
+                instance.post("'https://serin-crm.herokuapp.com/auth/login",{values}).then((response)=>{
                     setCustomer(response.data)
                     navigate('/');
                     
                   });
-                  instance.post('http://localhost:3001/auth/currentUser').then((response) =>{
+                  instance.post('https://serin-crm.herokuapp.com/auth/currentUser').then((response) =>{
         
                     setCustomer(response.data)
                 })

@@ -12,7 +12,7 @@ import Axios from 'axios';
 export default function Departman() {
     let params = useParams();
     const [musteriler , setMusteriler] = useState([]);
-    const [apiPath , setApiPath] = useState('http://localhost:3001/api/get/'+params.departman);
+    const [apiPath , setApiPath] = useState('https://serin-crm.herokuapp.com/api/get/'+params.departman);
     
     
     

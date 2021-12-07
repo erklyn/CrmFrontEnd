@@ -14,7 +14,7 @@ export default function HomePageGorusme() {
         
 
         
-        Axios.get('http://localhost:3001/api/get/gorusmeler').then((response)=>{
+        Axios.get('https://serin-crm.herokuapp.com/api/get/gorusmeler').then((response)=>{
           setGorusmeler(response.data);
           
           

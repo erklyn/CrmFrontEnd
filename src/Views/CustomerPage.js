@@ -34,15 +34,15 @@ export default function CustomerPage() {
     }
     
     useEffect(()=>{
-        Axios.get('http://localhost:3001/api/musteriler/'+params.id+'').then((response)=>{
+        Axios.get('https://serin-crm.herokuapp.com/api/musteriler/'+params.id+'').then((response)=>{
           setMusteri(response.data);
           
         })
-        Axios.get('http://localhost:3001/api/get/gorusme/'+params.id+'').then((response)=>{
+        Axios.get('https://serin-crm.herokuapp.com/api/get/gorusme/'+params.id+'').then((response)=>{
           setGorusme(response.data);
           
         })
-        Axios.get('http://localhost:3001/api/get/teklif/'+params.id+'').then((response)=>{
+        Axios.get('https://serin-crm.herokuapp.com/api/get/teklif/'+params.id+'').then((response)=>{
           setTeklifler(response.data);
           
         })

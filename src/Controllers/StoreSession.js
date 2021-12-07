@@ -13,7 +13,7 @@ export const CustomerWrapper = ({ children }) => {
   const [working, setWorking] = useState(true);
 
   const refreshToken = async () => {
-    await Axios.post('http://localhost:3001/auth/currentUser').then((response) =>{
+    await Axios.post('https://serin-crm.herokuapp.com/auth/currentUser').then((response) =>{
         
         setCustomer(response.data)
     })

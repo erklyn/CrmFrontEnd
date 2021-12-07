@@ -88,7 +88,7 @@ export default function CreatePropositionPage() {
               validationSchema ={FORM_VALIDATION}
               onSubmit={ (values ,{ resetForm}) =>{
                 
-                Axios.post("http://localhost:3001/api/insert/teklif",{values}).then(()=>{
+                Axios.post("https://serin-crm.herokuapp.com/api/insert/teklif",{values}).then(()=>{
                   alert('succesfull insert');
                   
                 });

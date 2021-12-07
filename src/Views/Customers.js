@@ -22,7 +22,7 @@ export default function Customers() {
 
 
     const [musteriler , setMusteriler] = useState([]);
-    const apiPath  = 'http://localhost:3001/api/get';
+    const apiPath  = 'https://serin-crm.herokuapp.com/api/get';
     const INITIAL_FORM_STATE = {
         searchParameter: '',
         searchValue:'',

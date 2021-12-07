@@ -69,7 +69,7 @@ export default function CreateMeeting() {
             validationSchema ={FORM_VALIDATION}
             onSubmit={ (values ,{ resetForm}) =>{
               
-              Axios.post("http://localhost:3001/api/insert/gorusme",{values}).then(()=>{
+              Axios.post("https://serin-crm.herokuapp.com/api/insert/gorusme",{values}).then(()=>{
                 alert('succesfull insert');
                 
               });

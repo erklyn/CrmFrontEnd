@@ -39,7 +39,7 @@ export default function CreateUser() {
              
               onSubmit={ (values) =>{
                 
-                Axios.post("http://localhost:3001/auth/register",{values}).then((response)=>{
+                Axios.post("https://serin-crm.herokuapp.com/auth/register",{values}).then((response)=>{
                   console.log(response);
                 });
                 

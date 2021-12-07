@@ -14,7 +14,7 @@ export default function HomePageTeklifler() {
         
 
         
-        Axios.get('http://localhost:3001/api/get/teklifler').then((response)=>{
+        Axios.get('https://serin-crm.herokuapp.com/api/get/teklifler').then((response)=>{
           setTeklifler(response.data);
           
           
