@@ -17,7 +17,7 @@ const Header = () => {
   let navigate = useNavigate();
 
       const handleClick = () => {
-      Axios.get('http://localhost:3001/auth/logout');
+      Axios.get(''+process.env.REACT_APP_URL+'/auth/logout');
       navigate('/');
       setCustomer(null);
       }

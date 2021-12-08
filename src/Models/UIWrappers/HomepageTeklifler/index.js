@@ -7,14 +7,30 @@ import { Link } from 'react-router-dom';
 Axios.defaults.withCredentials = true;
 
 export default function HomePageTeklifler() {
-    const today = new Date();
+    function getDate(gorusmeDa) {
+        let date = new Date(gorusmeDa);
+        let year = date.getFullYear();
+        let month = date.getMonth()+1;
+        let dt = date.getDate();
+
+         if (dt < 10) {
+         dt = '0' + dt;
+         }
+         if (month < 10) {
+          month = '0' + month;
+         }       
+
+         return (dt+'.' + month + '.'+year);
+
+   }
+
     const [teklifler , setTeklifler] = useState([{}]);
     useEffect(()=>{
         
         
 
         
-        Axios.get('https://serin-crm.herokuapp.com/api/get/teklifler').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/get/teklifler').then((response)=>{
           setTeklifler(response.data);
           
           
@@ -36,7 +52,7 @@ export default function HomePageTeklifler() {
             <Paper>  
             <Link className='homepageStacks' to={'/musteri/teklif/'+a.id}>
             <Typography>
-                {a.temsilciAdi}  , {a.id} numaralı Teklif'i sisteme yükledi.
+                {a.temsilciAdi}  ,  {getDate(a.teklifTarih)}  tarihinde  {a.aracTipi} için durumu {a.durum} olan bir teklif yükledi. 
             </Typography>
 
             </Link>

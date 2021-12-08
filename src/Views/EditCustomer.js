@@ -1,4 +1,4 @@
-import React  from 'react'
+import React , { useEffect, useState }  from 'react'
 import { Formik , Form } from 'formik';
 import * as Yup from 'yup'; 
 import {
@@ -13,32 +13,71 @@ import Button from '../Models/UIWrappers/Button';
 import countries from '../Models/Data/countries.json';
 import city from '../Models/Data/turkey-city.json';
 import trailers from '../Models/Data/trailers.json';
-import riskseviyesi from '../Models/Data/dereceler.json'
 import { useNavigate } from 'react-router-dom';
 import { useCustomer } from '../Controllers/StoreSession';
+import { useParams } from 'react-router';
+
+
 
 Axios.defaults.withCredentials = true;
 
 
 
 
-export default function NewCustomerPage() {
+export default function EditCustomer() {
 
-  const {customer} = useCustomer();
-  console.log(customer.id)
-  const INITIAL_FORM_STATE ={
-    firmaAdi:'',
-    firmaAdresi:'',
-    firmaMail:'',
-    firmaSehir:'',
-    firmaUlke:'',
-    firmaAractipi:'',
-    firmaIlgilisi:'',
-    firmaTelefon:'',
-    musteriRisk:'',
-    temsilciID:customer.id,
-    temsilciAdi:customer.adi
-  };
+
+
+    const {customer} = useCustomer();
+
+    const [initialValues, setInitialValues] = useState();
+    const params = useParams();
+    async function getInitialValues() {
+        try {
+            const values =  await Axios.get(''+process.env.REACT_APP_URL+'/api/musteriler/'+params.id);
+              //console.log(response);
+                console.log(values.data[0])
+            
+              return {
+                  id: values.data[0].id,
+                  firmaAdi: values.data[0].firmaAdi,
+                  firmaAdresi: values.data[0].firmaAdresi,
+                  firmaMail: values.data[0].firmaMail,
+                  firmaSehir: values.data[0].firmaSehir,
+                  firmaUlke: values.data[0].firmaUlke,
+                  firmaAractipi: values.data[0].firmaAractipi,
+                  firmaIlgilisi: values.data[0].firmaIlgilisi,
+                  firmaTelefon: values.data[0].firmaTelefon,
+                  temsilciID: customer.id,
+                  temsilciAdi: customer.adi,
+              }
+  
+              //console.log(InitialValues);
+  
+              //return InitialValues;
+  
+  
+            } catch (error) {
+              console.error(error);
+            }
+      }
+
+
+    useEffect(()=>{ 
+      
+        getInitialValues().then(res => setInitialValues(res))
+        
+         
+      },[]);
+    
+   console.log(initialValues)
+   
+      
+      
+      
+      
+
+
   
   
   const FORM_VALIDATION = Yup.object().shape({
@@ -79,13 +118,11 @@ export default function NewCustomerPage() {
         <Container>
           <div >
             <Formik
-            initialValues ={{
-              ...INITIAL_FORM_STATE
-            }}
+            initialValues ={{...initialValues}}
             validationSchema ={FORM_VALIDATION}
             onSubmit={ (values ,{ resetForm}) =>{
               
-              Axios.post(""+process.env.REACT_APP_URL+"/api/insert/musteri",{values}).then(()=>{
+              Axios.post(""+process.env.REACT_APP_URL+"/api/update/musteri/"+params.id,{values}).then(()=>{
                 alert('succesfull insert');
                 
               });
@@ -107,19 +144,12 @@ export default function NewCustomerPage() {
                     label="Müşteri Ünvanı"
                     />
                   </Grid>
-                  
+
                   <Grid item xs={4}> 
                   <Textfield 
                     name= "firmaIlgilisi"
                     label="Müşteri İlgili Kişisi Adı"
                     />
-                  </Grid>
-                  <Grid item xs={3}> 
-                    <Select
-                      name='musteriRisk'
-                      label='Müşteri Risk Seviyesi'
-                      options={riskseviyesi} 
-                      />
                   </Grid>
                   <Grid item xs={4}> 
                   <Select

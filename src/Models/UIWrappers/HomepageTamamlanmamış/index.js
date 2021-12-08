@@ -20,7 +20,8 @@ export default function HomePageTamamlanmamışTeklifler() {
           month = '0' + month;
          }       
 
-         return (dt+' ' + month + ' '+year);
+         return (dt+'.' + month + '.'+year);
+
    }
 
     const [redTeklifler , setRedTeklifler] = useState([{}]);
@@ -29,7 +30,7 @@ export default function HomePageTamamlanmamışTeklifler() {
         
 
         
-        Axios.get('https://serin-crm.herokuapp.com/api/get/teklifRed').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/get/teklifRed').then((response)=>{
           setRedTeklifler(response.data);
           
           
@@ -50,7 +51,7 @@ export default function HomePageTamamlanmamışTeklifler() {
             <Paper>  
             <Link className='homepageStacks' to={'/musteri/teklif/'+a.id}>
             <Typography>
-                {a.temsilciAdi}  |  {a.durum} | {a.neden}  | {getDate(a.teklifTarih)}
+                {a.temsilciAdi}  | {a.aracTipi} |  {a.durum} | {a.neden}  | {getDate(a.teklifTarih)}
             </Typography>
 
             </Link>

@@ -29,9 +29,11 @@ export default function CreateMeeting() {
         gorusmeOzeti:'',
         gorusmeTarihi:'',
         gorusmeYeri:'',
+        aractipi:'',
         musteriID:params.musteriID,
         temsilciID:customer.id,
-        temsilciAdi:customer.adi
+        temsilciAdi:customer.adi,
+
       };
       
       
@@ -47,6 +49,8 @@ export default function CreateMeeting() {
       
           gorusmeTarihi: Yup.date()
           .required('Lütfen doldurunuz.'),
+          aractipi: Yup.string()
+          .required('Araç Tipini giriniz.'),
       });
       
 
@@ -69,7 +73,7 @@ export default function CreateMeeting() {
             validationSchema ={FORM_VALIDATION}
             onSubmit={ (values ,{ resetForm}) =>{
               
-              Axios.post("https://serin-crm.herokuapp.com/api/insert/gorusme",{values}).then(()=>{
+              Axios.post(""+process.env.REACT_APP_URL+"/api/insert/gorusme",{values}).then(()=>{
                 alert('succesfull insert');
                 
               });
@@ -83,7 +87,7 @@ export default function CreateMeeting() {
                   <Grid item xs={12}  >
                     <Typography>Görüşme Bilgileri</Typography>
                   </Grid>
-                  <Grid item xs={6} md={4} lg={4} >
+                  <Grid item xs={12} md={6} lg={6} >
 
                     <Textfield
                     name='gorusmeYeri'
@@ -91,7 +95,7 @@ export default function CreateMeeting() {
                     />
                   </Grid>
 
-                  <Grid item xs={6} md={4} lg={4} >
+                  <Grid item xs={12} md={6} lg={6} >
 
                   <DateTimePicker 
                     name= "gorusmeTarihi"
@@ -99,11 +103,18 @@ export default function CreateMeeting() {
                     />
                   </Grid>
 
-                  <Grid item xs={6} md={4} lg={4} >
+                  <Grid item xs={12} md={6} lg={6} >
 
                   <Textfield 
                     name= "gorusmeKonusu"
                     label="Görüşme Konusu"
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6} lg={6} >
+
+                  <Textfield 
+                    name= "aractipi"
+                    label="Araç Tipi"
                     />
                   </Grid>
                   <Grid item xs={12}> 

@@ -7,14 +7,30 @@ import { Link } from 'react-router-dom';
 Axios.defaults.withCredentials = true;
 
 export default function HomePageGorusme() {
-    const today = new Date();
+    function getDate(gorusmeDa) {
+        let date = new Date(gorusmeDa);
+        let year = date.getFullYear();
+        let month = date.getMonth()+1;
+        let dt = date.getDate();
+
+         if (dt < 10) {
+         dt = '0' + dt;
+         }
+         if (month < 10) {
+          month = '0' + month;
+         }       
+
+         return (dt+'.' + month + '.'+year);
+
+   }
+
     const [gorusmeler , setGorusmeler] = useState([{}]);
     useEffect(()=>{
         
         
 
         
-        Axios.get('https://serin-crm.herokuapp.com/api/get/gorusmeler').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/get/gorusmeler').then((response)=>{
           setGorusmeler(response.data);
           
           
@@ -33,9 +49,9 @@ export default function HomePageGorusme() {
                return(
             <Grid item xs={12} margin={1} padding={1}> 
             <Paper>  
-            <Link className='homepageStacks' to={'/musteriler/'+a.musteriID}>
+            <Link className='homepageStacks' to={'/musteri/gorusme/'+a.id}>
             <Typography>
-                {a.temsilciAdi}  , {a.id} ile bir görüşme oluşturdu!  
+                {a.temsilciAdi}  , {a.aracTipi} için {getDate(a.tarih)} tarihinde bir görüşme yaptı.
             </Typography>
 
             </Link>

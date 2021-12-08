@@ -13,7 +13,6 @@ export default function CustomerPage() {
     const [musteri , setMusteri] = useState([]);
     const [gorusme , setGorusme] = useState([]);
     const [teklifler , setTeklifler] = useState([]);
-    const [temsilciID , setTemsilciID] = useState(0);
 
     let params = useParams();
     
@@ -34,19 +33,19 @@ export default function CustomerPage() {
     }
     
     useEffect(()=>{
-        Axios.get('https://serin-crm.herokuapp.com/api/musteriler/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/musteriler/'+params.id+'').then((response)=>{
           setMusteri(response.data);
           
         })
-        Axios.get('https://serin-crm.herokuapp.com/api/get/gorusme/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/get/gorusme/'+params.id+'').then((response)=>{
           setGorusme(response.data);
           
         })
-        Axios.get('https://serin-crm.herokuapp.com/api/get/teklif/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/get/teklif/'+params.id+'').then((response)=>{
           setTeklifler(response.data);
           
         })
-        console.log(teklifler)
+        
 
       },[]);
     
@@ -190,27 +189,36 @@ export default function CustomerPage() {
                  {gorusme.map(gorusme => {
                 return (
                     
-                    <Grid  container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                        
-                        <Grid item xs={12}>
-                        <div className='musteri-inside'>
-                        <Typography>Görüşme Tarihi:</Typography>
-                        <h3 className='musteri-h3'>{getDate(gorusme.tarih)}</h3> 
-                        <Typography>Görüşme Konusu:</Typography>
-                        <h3 className='musteri-h3'>{gorusme.konusu}</h3>
-                        <Typography>Görüşme Özeti:</Typography>
-                        <h3 className='musteri-h3'>{gorusme.ozet}</h3> 
-                        
-                       
-                        </div>
-                        </Grid>
-                        
-
+                  <Grid  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  spacing={2}
+                  >
+                      
+                      <Grid item xs={12}>
+                      
+                      <Link
+                       className='musteri-bar' 
+                       to={'/musteri/gorusme/'+gorusme.id}
+                      >
+                      <div className='musteri-inside'>
+                      <Typography>Görüşme Tarihi:</Typography>
+                      <h3 className='musteri-h3'>{getDate(gorusme.tarih)}</h3> 
+                      <Typography>Görüşme Araç Tipi:</Typography>
+                      <h3 className='musteri-h3'>{gorusme.aracTipi}</h3> 
+                      <Typography>Görüşme Konusu:</Typography>
+                      <h3 className='musteri-h3'>{gorusme.konusu}</h3>
+                      <Typography>Görüşen Kişi:</Typography>
+                      <h3 className='musteri-h3'>{gorusme.temsilciAdi}</h3> 
+                    
+                      </div>
+                      
+                     </Link>
                     </Grid>
+                      
+
+                  </Grid>
                     )
                   })}
                   
@@ -232,7 +240,7 @@ export default function CustomerPage() {
 
                   </Grid>
                   <Grid item xs={12}> 
-                  <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+temsilciID+'/'+params.id+''}> Yeni Teklif Ekle</Link>
+                  <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+params.id+''}> Yeni Teklif Ekle</Link>
                   </Grid>
                   {teklifler.map(teklif => {
                 return (

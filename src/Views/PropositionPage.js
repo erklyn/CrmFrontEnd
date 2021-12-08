@@ -3,6 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import Axios from 'axios';
 import { Paper } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 
 Axios.defaults.withCredentials = true;
@@ -31,7 +32,7 @@ export default function PropositionPage() {
     }
     
     useEffect(()=>{
-        Axios.get('http://localhost:3001/api/get/tekteklif/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/get/tekteklif/'+params.id+'').then((response)=>{
           setMusteri(response.data);
           
         })
@@ -52,6 +53,16 @@ export default function PropositionPage() {
                 spacing={2}
                 direction="row"
                 wrap>
+                  <Grid container 
+                  marginLeft={2}>
+
+                  
+                  <Grid item xs={2}>
+                  <Link to={'/musteriler/'+a.musteriID}>
+                      Müşteriye Dön
+                  </Link>
+                  </Grid>
+                  </Grid>
                   
                  <Grid item xs={12} md={6} lg={3}>
                    <Paper elevation={2} variant='outlined'>

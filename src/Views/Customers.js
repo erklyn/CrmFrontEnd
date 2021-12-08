@@ -22,7 +22,7 @@ export default function Customers() {
 
 
     const [musteriler , setMusteriler] = useState([]);
-    const apiPath  = 'https://serin-crm.herokuapp.com/api/get';
+    const apiPath  = ''+process.env.REACT_APP_URL+'/api/get';
     const INITIAL_FORM_STATE = {
         searchParameter: '',
         searchValue:'',
@@ -33,15 +33,9 @@ export default function Customers() {
     
     
 
-    useEffect(()=>{
-        
-        
-
-    
+    useEffect(()=>{    
         Axios.get(apiPath).then((response)=>{
           setMusteriler(response.data);
-          
-          
         })
       },[]);
     
@@ -56,7 +50,7 @@ export default function Customers() {
             }}
             
             onSubmit={ (values) =>{
-              Axios.get("http://localhost:3001/api/get/"+values.searchParameter+"/"+values.searchValue).then((response)=>{
+              Axios.get(""+process.env.REACT_APP_URL+"/api/get/"+values.searchParameter+"/"+values.searchValue).then((response)=>{
                 setMusteriler(response.data);
                 console.log(values.searchValue);
               })

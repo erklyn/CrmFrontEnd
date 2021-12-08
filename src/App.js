@@ -12,6 +12,8 @@ import CreateUser from './Views/CreateUser';
 import Axios from 'axios';
 import { useCustomer } from "./Controllers/StoreSession";
 import HomePage from './Views/HomePage';
+import Meeting from './Views/Meeting';
+import EditCustomer from './Views/EditCustomer';
 
 
 Axios.defaults.withCredentials = true;
@@ -22,7 +24,7 @@ Axios.defaults.withCredentials = true;
 function App() {
 
 
-const { customer, setCustomer } = useCustomer();
+const { customer } = useCustomer();
   if(customer) {
     return (
     <div>
@@ -32,11 +34,15 @@ const { customer, setCustomer } = useCustomer();
       <Route path="login" element={<LoginPage />}/>
       <Route path="register" element={<CreateUser />}/>
       <Route path="musteriler" element={<Customers />}/>
-      <Route path="musteriler/yeni-teklif/:temsilciID/:musteriID" element={<CreatePropositionPage />}/>
+      <Route path="musteriler/yeni-teklif/:musteriID" element={<CreatePropositionPage />}/>
       <Route path="musteriler/yeni-gorusme/:musteriID" element={<CreateMeeting />}/>
       <Route path='musteriler/:id' element={<CustomerPage />} />
       <Route path="yeni-musteri" element={<NewCustomerPage />} />
       <Route path="musteri/teklif/:id" element={<PropositionPage />} />
+      <Route path="musteri/gorusme/:id" element={<Meeting />} />
+      <Route path="musteriler/duzenle/:id" element={<EditCustomer />} />
+      <Route path="musteriler/teklif/duzenle/:id" element={<Meeting />} />
+      <Route path="musteriler/gorusme/duzenle/:id" element={<Meeting />} />
       </Routes>
     </div>
     )

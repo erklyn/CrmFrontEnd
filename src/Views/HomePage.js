@@ -1,14 +1,26 @@
-import { Container, Grid, Typography } from '@mui/material';
-import React , {useState} from 'react'
+import {Grid, Typography } from '@mui/material';
+import React , { useEffect } from 'react'
 import {useCustomer} from '../Controllers/StoreSession'
 import Gorusmeler from '../Models/UIWrappers/HomepageGorusmeler/index'
 import Teklifler from '../Models/UIWrappers/HomepageTeklifler/index'
 import RedTeklifler from '../Models/UIWrappers/HomepageTamamlanmamış/index'
+import  Axios  from 'axios';
+Axios.defaults.withCredentials = true;
 
 
 export default function HomePage() {
-    const {customer , setCustomer } = useCustomer();
-    const kullaniciAdi = customer.adi;
+    const { customer , setCustomer } = useCustomer();
+    let kullaniciAdi = customer.adi;
+    useEffect(()=>{
+        
+        Axios.post(''+process.env.REACT_APP_URL+'/auth/currentUser').then((response) =>{
+        
+                    setCustomer(response.data)
+                })
+                
+        
+      },[]);
+    
     
     return (
         <div>
