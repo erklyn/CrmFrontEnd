@@ -115,7 +115,7 @@ export default function Meeting() {
                         
                         Görüşme Özeti
                     </Typography>
-                          {a.özet}
+                          {a.ozet}
                       </Typography>
                    </Paper>
                   </Grid>
