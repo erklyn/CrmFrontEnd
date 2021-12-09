@@ -14,7 +14,7 @@ export const CustomerWrapper = ({ children }) => {
 
   const refreshToken = async () => {
 
-    console.log(process.env.REACT_APP_URL)
+    
     await Axios.post(''+process.env.REACT_APP_URL+'/api/currentUser').then((response) =>{
         
         setCustomer(response.data)

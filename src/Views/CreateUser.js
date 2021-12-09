@@ -1,6 +1,5 @@
 import React from 'react'
 import { Formik , Form } from 'formik';
-import * as Yup from 'yup'; 
 import {
   Grid , Container
   
@@ -40,7 +39,7 @@ export default function CreateUser() {
               onSubmit={ (values) =>{
                 
                 Axios.post(""+process.env.REACT_APP_URL+"/api/register",{values}).then((response)=>{
-                  console.log(response);
+                  
                 });
                 
               }}>

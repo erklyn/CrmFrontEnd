@@ -45,7 +45,7 @@ export default function HomePageTamamlanmamışTeklifler() {
            <Paper>
 
            {redTeklifler.map( a => {
-               console.log(a)
+               
                return(
             <Grid item xs={12} margin={1} padding={1}> 
             <Paper>  

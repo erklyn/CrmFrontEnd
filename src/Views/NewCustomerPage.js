@@ -25,7 +25,7 @@ Axios.defaults.withCredentials = true;
 export default function NewCustomerPage() {
 
   const {customer , setCustomer} = useCustomer();
-  console.log(customer.id)
+  
   const INITIAL_FORM_STATE ={
     firmaAdi:'',
     firmaAdresi:'',

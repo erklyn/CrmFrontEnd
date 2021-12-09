@@ -33,7 +33,7 @@ export default function EditCustomer() {
     function  getData() {
           Axios.get(process.env.REACT_APP_URL+'/api/musteriler/'+params.id).then((response)=>{
           setInıtvalues(response.data);
-          console.log(response.data)
+          
         })
     }
 

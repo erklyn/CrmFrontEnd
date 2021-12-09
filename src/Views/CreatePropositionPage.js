@@ -74,7 +74,7 @@ export default function CreatePropositionPage() {
     
     let params = useParams();
     
-    console.log(customer.id)
+    
     return (
         <Grid container marginTop={1} spacing={1}
         direction="row">

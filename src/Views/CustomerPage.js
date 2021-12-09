@@ -4,14 +4,12 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom'
 import Axios from 'axios';
 import { Paper } from '@mui/material';
-import { useCustomer } from '../Controllers/StoreSession'
 
 Axios.defaults.withCredentials = true;
 
 
 export default function CustomerPage() {
 
-  const { customer } = useCustomer();
 
     const [musteri , setMusteri] = useState([]);
     const [gorusme , setGorusme] = useState([]);

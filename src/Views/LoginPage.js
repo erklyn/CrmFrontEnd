@@ -27,7 +27,7 @@ export default function LoginPage() {
 
 
 
-    const { customer , setCustomer } = useCustomer();
+    const { setCustomer } = useCustomer();
     return (
         <Grid container
 
