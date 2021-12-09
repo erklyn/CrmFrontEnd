@@ -4,11 +4,14 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom'
 import Axios from 'axios';
 import { Paper } from '@mui/material';
+import { useCustomer } from '../Controllers/StoreSession'
 
 Axios.defaults.withCredentials = true;
 
 
 export default function CustomerPage() {
+
+  const { customer } = useCustomer();
 
     const [musteri , setMusteri] = useState([]);
     const [gorusme , setGorusme] = useState([]);
@@ -49,7 +52,7 @@ export default function CustomerPage() {
 
       },[]);
     
-  
+      
     return (
         <div>
           
@@ -62,7 +65,16 @@ export default function CustomerPage() {
                 spacing={1}
                 direction="row">
                    
-                 <Grid item xs={12} md={6} lg={3}>
+                 <Grid container justifyContent = 'end' marginBottom ={1}>
+                   <Grid item>
+                      <Link className='musteri-link' to ={'/musteriler/duzenle/'+params.id}>
+                        Müşteri Düzenle
+                      </Link>
+                   </Grid>
+                </Grid> 
+
+
+                 <Grid item xs={12} md={6} lg={4}>
                    <Paper elevation={2} variant='outlined'>
                       <Typography align='center' variant='h5'>
                       <Typography align='center' variant='h6'>
@@ -73,7 +85,7 @@ export default function CustomerPage() {
                       </Typography>
                    </Paper>
                  </Grid>
-                 <Grid item xs={12} md={6} lg={3}>
+                 <Grid item xs={12} md={6} lg={4}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
                       <Typography align='center' variant='h6'>
@@ -84,7 +96,18 @@ export default function CustomerPage() {
                       </Typography>
                    </Paper>
                   </Grid>
-                  <Grid item xs={12} md={6} lg={3}>
+                  <Grid item xs={12} md={6} lg={4}>
+                 <Paper elevation={2} variant='outlined'>
+                 <Typography align='center' variant='h5'>
+                      <Typography align='center' variant='h6'>
+                        
+                        Müşteri Risk
+                    </Typography>
+                          {a.musteriRisk}
+                      </Typography>
+                   </Paper>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
                       <Typography align='center' variant='h6'>
@@ -95,7 +118,8 @@ export default function CustomerPage() {
                       </Typography>
                    </Paper>
                   </Grid>
-                  <Grid item xs={12} md={6} lg={3}>
+                  
+                  <Grid item xs={12} md={6}>
                  <Paper elevation={2} variant='outlined'>
                  <Typography align='center' variant='h5'>
                       <Typography align='center' variant='h6'>

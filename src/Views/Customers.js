@@ -15,16 +15,9 @@ Axios.defaults.withCredentials = true;
 
 
 export default function Customers() {
-    
-
-    
-
-
-
     const [musteriler , setMusteriler] = useState([]);
     const apiPath  = ''+process.env.REACT_APP_URL+'/api/get';
     const INITIAL_FORM_STATE = {
-        searchParameter: '',
         searchValue:'',
     };
 
@@ -50,9 +43,8 @@ export default function Customers() {
             }}
             
             onSubmit={ (values) =>{
-              Axios.get(""+process.env.REACT_APP_URL+"/api/get/"+values.searchParameter+"/"+values.searchValue).then((response)=>{
+              Axios.get(""+process.env.REACT_APP_URL+"/api/get/firmaAdi/"+values.searchValue).then((response)=>{
                 setMusteriler(response.data);
-                console.log(values.searchValue);
               })
             }}
             >
@@ -64,17 +56,11 @@ export default function Customers() {
                         justifyContent="center"
                         alignItems="center"
                         >
-                            <Grid item xs={4}>
-                            <Select 
-                            name='searchParameter'
-                            label='Arama bölümü seçiniz.'
-                            options={searchparams}
-                            />
-                            </Grid>
-                            <Grid item xs={4}>
+                            
+                            <Grid item xs={8}>
                             <Textfield
                             name= "searchValue"
-                            label="Arama"/>
+                            label="Firma Adi giriniz"/>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -109,6 +95,8 @@ export default function Customers() {
                         <h3 className='musteri-h3'>{musteri.firmaSehir}</h3>
                         <Typography>Araç Tipi:</Typography>
                         <h3 className='musteri-h3'>{musteri.firmaAractipi}</h3> 
+                        <Typography>Risk Derecesi:</Typography>
+                        <h3 className='musteri-h3'>{musteri.musteriRisk}</h3> 
                       
                         
                         </div>

@@ -1,4 +1,4 @@
-import React  from 'react'
+import React ,{ useEffect } from 'react'
 import { Formik , Form } from 'formik';
 import * as Yup from 'yup'; 
 import {
@@ -24,18 +24,16 @@ Axios.defaults.withCredentials = true;
 
 export default function NewCustomerPage() {
 
-  const {customer} = useCustomer();
+  const {customer , setCustomer} = useCustomer();
   console.log(customer.id)
   const INITIAL_FORM_STATE ={
     firmaAdi:'',
     firmaAdresi:'',
     firmaMail:'',
-    firmaSehir:'',
-    firmaUlke:'',
     firmaAractipi:'',
     firmaIlgilisi:'',
     firmaTelefon:'',
-    musteriRisk:'',
+    musteriRisk:'Belirtilmedi',
     temsilciID:customer.id,
     temsilciAdi:customer.adi
   };
@@ -65,22 +63,32 @@ export default function NewCustomerPage() {
   });
 
 
-
+  useEffect(()=>{
+        
+    Axios.post(''+process.env.REACT_APP_URL+'/auth/currentUser').then((response) =>{
+    
+                setCustomer(response.data)
+            })
+            
+    
+  },[]);
 
 
 
 
 
    let navigate = useNavigate();
-    return (
-        <Grid container marginTop={2}>
-      
+   if(customer.departman === "dis-satis") {
+     return (
+      <Grid container marginTop={2}>
+    
       <Grid item xs={12}>
         <Container>
           <div >
             <Formik
             initialValues ={{
-              ...INITIAL_FORM_STATE
+              ...INITIAL_FORM_STATE,
+              firmaSehir:'Beriltilmedi'
             }}
             validationSchema ={FORM_VALIDATION}
             onSubmit={ (values ,{ resetForm}) =>{
@@ -100,87 +108,193 @@ export default function NewCustomerPage() {
                   <Grid item xs={12} >
                     <Typography>Müşteri Bilgileri</Typography>
                   </Grid>
-
-                    <Grid item xs={4}> 
+  
+                    <Grid item xs={6}> 
                   <Textfield 
                     name= "firmaAdi"
                     label="Müşteri Ünvanı"
                     />
                   </Grid>
                   
-                  <Grid item xs={4}> 
+                  <Grid item xs={6}> 
                   <Textfield 
                     name= "firmaIlgilisi"
                     label="Müşteri İlgili Kişisi Adı"
                     />
                   </Grid>
-                  <Grid item xs={3}> 
+                  <Grid item xs={6}> 
                     <Select
                       name='musteriRisk'
                       label='Müşteri Risk Seviyesi'
                       options={riskseviyesi} 
                       />
                   </Grid>
-                  <Grid item xs={4}> 
+                  <Grid item xs={6}> 
                   <Select
                     name= "firmaAractipi"
                     label="Müşteri Araç Tipi"
                     options={trailers}
                     />
                   </Grid>
-
-                  <Grid item xs={6}> 
+  
+                  <Grid item xs={4}> 
                   <Textfield 
                     name= "firmaMail"
                     label="Müşteri E-Mail Adresi"
                     />
                   </Grid>
                   
-                  <Grid item xs={6}> 
+                  <Grid item xs={4}> 
                   <Textfield 
                     name= "firmaTelefon"
                     label="Müşteri Telefon Numarası"
                     />
                   </Grid>
 
-                  <Grid item xs={12}> 
-                  <Textfield 
-                    name= "firmaAdresi"
-                    label="Müşteri Adresi"
-                    />
-                  </Grid>
-                  <Grid item xs={6}> 
-                  <Select
-                    name= "firmaSehir"
-                    label="Müşteri Şehir"
-                    options={city}
-                    />
-                  </Grid>
-                  <Grid item xs={6}> 
+                  <Grid item xs={4}> 
                     <Select
                       name='firmaUlke'
                       label='Müşteri Ülkesi'
                       options={countries} 
                       />
                   </Grid>
+  
+                  <Grid item xs={12}> 
+                  <Textfield 
+                    name= "firmaAdresi"
+                    label="Müşteri Adresi"
+                    multiline
+                    rows={3}
+                    />
+                  </Grid>
+                 
                   <Grid item xs={12}> 
                     <Button>
                       Yeni Müşteri Oluştur
                     </Button>
                   </Grid>
-
-
-
+  
+  
+  
                 </Grid>
-
+  
               </Form>
             </Formik>
-
+  
           </div>
         </Container>
       </Grid>
     </Grid>
-    )
+     )
+   }else{
+    return (
+      <Grid container marginTop={2}>
+    
+    <Grid item xs={12}>
+      <Container>
+        <div >
+          <Formik
+          initialValues ={{
+            ...INITIAL_FORM_STATE,
+            firmaUlke:'Turkey'
+
+          }}
+          validationSchema ={FORM_VALIDATION}
+          onSubmit={ (values ,{ resetForm}) =>{
+            
+            Axios.post(""+process.env.REACT_APP_URL+"/api/insert/musteri",{values}).then(()=>{
+              alert('succesfull insert');
+              
+            });
+            resetForm();
+            navigate('/musteriler')
+            
+          }}
+          >
+            <Form>
+              <Grid container spacing={2}>
+               
+                <Grid item xs={12} >
+                  <Typography>Müşteri Bilgileri</Typography>
+                </Grid>
+
+                  <Grid item xs={6}> 
+                <Textfield 
+                  name= "firmaAdi"
+                  label="Müşteri Ünvanı"
+                  />
+                </Grid>
+                
+                <Grid item xs={6}> 
+                <Textfield 
+                  name= "firmaIlgilisi"
+                  label="Müşteri İlgili Kişisi Adı"
+                  />
+                </Grid>
+                <Grid item xs={6}> 
+                  <Select
+                    name='musteriRisk'
+                    label='Müşteri Risk Seviyesi'
+                    options={riskseviyesi} 
+                    />
+                </Grid>
+                <Grid item xs={6}> 
+                <Select
+                  name= "firmaAractipi"
+                  label="Müşteri Araç Tipi"
+                  options={trailers}
+                  />
+                </Grid>
+
+                <Grid item xs={4}> 
+                <Textfield 
+                  name= "firmaMail"
+                  label="Müşteri E-Mail Adresi"
+                  />
+                </Grid>
+                
+                <Grid item xs={4}> 
+                <Textfield 
+                  name= "firmaTelefon"
+                  label="Müşteri Telefon Numarası"
+                  />
+                </Grid>
+                <Grid item xs={4}> 
+                <Select
+                  name= "firmaSehir"
+                  label="Müşteri Şehir"
+                  options={city}
+                  />
+                </Grid>
+                <Grid item xs={12}> 
+                <Textfield 
+                  name= "firmaAdresi"
+                  label="Müşteri Adresi"
+                  multiline
+                  rows={3}
+                  />
+                </Grid>
+               
+                <Grid item xs={12}> 
+                  <Button>
+                    Yeni Müşteri Oluştur
+                  </Button>
+                </Grid>
+
+
+
+              </Grid>
+
+            </Form>
+          </Formik>
+
+        </div>
+      </Container>
+    </Grid>
+  </Grid>
+  )
+   }
+    
 };
 
 

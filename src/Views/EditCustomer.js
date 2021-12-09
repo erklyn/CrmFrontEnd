@@ -25,61 +25,25 @@ Axios.defaults.withCredentials = true;
 
 
 export default function EditCustomer() {
-
-
-
+    const [initvalues , setInıtvalues] = useState([]);
     const {customer} = useCustomer();
-
-    const [initialValues, setInitialValues] = useState();
     const params = useParams();
-    async function getInitialValues() {
-        try {
-            const values =  await Axios.get(''+process.env.REACT_APP_URL+'/api/musteriler/'+params.id);
-              //console.log(response);
-                console.log(values.data[0])
-            
-              return {
-                  id: values.data[0].id,
-                  firmaAdi: values.data[0].firmaAdi,
-                  firmaAdresi: values.data[0].firmaAdresi,
-                  firmaMail: values.data[0].firmaMail,
-                  firmaSehir: values.data[0].firmaSehir,
-                  firmaUlke: values.data[0].firmaUlke,
-                  firmaAractipi: values.data[0].firmaAractipi,
-                  firmaIlgilisi: values.data[0].firmaIlgilisi,
-                  firmaTelefon: values.data[0].firmaTelefon,
-                  temsilciID: customer.id,
-                  temsilciAdi: customer.adi,
-              }
-  
-              //console.log(InitialValues);
-  
-              //return InitialValues;
-  
-  
-            } catch (error) {
-              console.error(error);
-            }
-      }
+           
+
+    function  getData() {
+          Axios.get(process.env.REACT_APP_URL+'/api/musteriler/'+params.id).then((response)=>{
+          setInıtvalues(response.data);
+          console.log(response.data)
+        })
+    }
+
 
 
     useEffect(()=>{ 
-      
-        getInitialValues().then(res => setInitialValues(res))
-        
+      getData();
          
       },[]);
     
-   console.log(initialValues)
-   
-      
-      
-      
-      
-
-
-  
-  
   const FORM_VALIDATION = Yup.object().shape({
       firmaAdi: Yup.string()
       .required('Müşteri Ünvanını giriniz!'),
@@ -104,113 +68,112 @@ export default function EditCustomer() {
   });
 
 
-
-
-
-
-
-
    let navigate = useNavigate();
-    return (
-        <Grid container marginTop={2}>
-      
-      <Grid item xs={12}>
-        <Container>
-          <div >
-            <Formik
-            initialValues ={{...initialValues}}
-            validationSchema ={FORM_VALIDATION}
-            onSubmit={ (values ,{ resetForm}) =>{
-              
-              Axios.post(""+process.env.REACT_APP_URL+"/api/update/musteri/"+params.id,{values}).then(()=>{
-                alert('succesfull insert');
-                
-              });
+
+   return (
+      initvalues.map(a => {
+  const INITIAL_FORM_STATE = {
+    id: a.id,
+    firmaAdi: a.firmaAdi,
+    firmaSehir: a.firmaSehir,
+    firmaUlke: a.firmaUlke,
+    firmaMail: a.firmaMail,
+    firmaAractipi: a.firmaAractipi,
+    firmaIlgilisi: a.firmaIlgilisi,
+    firmaAdresi: a.firmaAdresi,
+    firmaTelefon: a.firmaTelefon,
+    musteriRisk : a.musteriRisk,
+    temsilciID: a.temsilciID || customer.id,
+    temsilciAdi: a.temsilciAdi || customer.adi
+  }
+  return(
+<Grid container marginTop={2}>
+  <Grid item xs={12}>
+    <Container>
+      <div>
+        <Formik
+          initialValues ={{
+            ...INITIAL_FORM_STATE
+          }}
+          validationSchema ={FORM_VALIDATION}
+          onSubmit={ (values ,{ resetForm}) =>{
+            Axios.post(""+process.env.REACT_APP_URL+"/api/update/musteri/"+params.id,{values}).then(()=>{
+              alert('succesfull insert');
+            });
               resetForm();
-              navigate('/musteriler')
-              
-            }}
-            >
-              <Form>
-                <Grid container spacing={2}>
-                 
-                  <Grid item xs={12} >
-                    <Typography>Müşteri Bilgileri</Typography>
-                  </Grid>
-
+              navigate('/musteriler/'+a.id) }}>
+                   <Form>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} >
+                       <Typography>Müşteri Bilgileri</Typography>
+                    </Grid>
                     <Grid item xs={4}> 
-                  <Textfield 
-                    name= "firmaAdi"
-                    label="Müşteri Ünvanı"
-                    />
-                  </Grid>
-
-                  <Grid item xs={4}> 
-                  <Textfield 
-                    name= "firmaIlgilisi"
-                    label="Müşteri İlgili Kişisi Adı"
-                    />
-                  </Grid>
-                  <Grid item xs={4}> 
-                  <Select
-                    name= "firmaAractipi"
-                    label="Müşteri Araç Tipi"
-                    options={trailers}
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}> 
-                  <Textfield 
-                    name= "firmaMail"
-                    label="Müşteri E-Mail Adresi"
-                    />
-                  </Grid>
-                  
-                  <Grid item xs={6}> 
-                  <Textfield 
-                    name= "firmaTelefon"
-                    label="Müşteri Telefon Numarası"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}> 
-                  <Textfield 
-                    name= "firmaAdresi"
-                    label="Müşteri Adresi"
-                    />
-                  </Grid>
-                  <Grid item xs={6}> 
-                  <Select
-                    name= "firmaSehir"
-                    label="Müşteri Şehir"
-                    options={city}
-                    />
-                  </Grid>
-                  <Grid item xs={6}> 
-                    <Select
-                      name='firmaUlke'
-                      label='Müşteri Ülkesi'
-                      options={countries} 
-                      />
-                  </Grid>
-                  <Grid item xs={12}> 
-                    <Button>
-                      Yeni Müşteri Oluştur
-                    </Button>
-                  </Grid>
-
-
-
+                      <Textfield 
+                        name= "firmaAdi"
+                        label="Müşteri Ünvanı"
+                        />
+                    </Grid>
+                    <Grid item xs={4}> 
+                      <Textfield 
+                        name= "firmaIlgilisi"
+                        label="Müşteri İlgili Kişisi Adı"
+                        />
+                    </Grid>
+                    <Grid item xs={4}> 
+                      <Select
+                        name= "firmaAractipi"
+                        label="Müşteri Araç Tipi"
+                        options={trailers}
+                        />
+                    </Grid>
+                    <Grid item xs={6}> 
+                      <Textfield 
+                        name= "firmaMail"
+                        label="Müşteri E-Mail Adresi"
+                        />
+                    </Grid>
+                    <Grid item xs={6}> 
+                      <Textfield 
+                        name= "firmaTelefon"
+                        label="Müşteri Telefon Numarası"
+                        />
+                    </Grid>
+                    <Grid item xs={12}> 
+                      <Textfield 
+                        name= "firmaAdresi"
+                        label="Müşteri Adresi"
+                        />
+                    </Grid>
+                    <Grid item xs={6}> 
+                      <Select
+                        name= "firmaSehir"
+                        label="Müşteri Şehir"
+                        options={city}
+                        />
+                    </Grid>
+                    <Grid item xs={6}> 
+                      <Select
+                        name='firmaUlke'
+                        label='Müşteri Ülkesi'
+                        options={countries} 
+                        />
+                    </Grid>
+                    <Grid item xs={12}> 
+                      <Button>
+                        Müşteri KAYDET
+                      </Button>
+                    </Grid>
                 </Grid>
-
-              </Form>
-            </Formik>
-
-          </div>
-        </Container>
-      </Grid>
-    </Grid>
-    )
+             </Form>
+         </Formik>
+      </div>
+    </Container>
+  </Grid>
+</Grid>
+ )
+})
+)
+  
 };
 
 
