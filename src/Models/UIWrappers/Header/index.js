@@ -17,7 +17,7 @@ const Header = () => {
   let navigate = useNavigate();
 
       const handleClick = () => {
-      Axios.get(''+process.env.REACT_APP_URL+'/auth/logout');
+      Axios.get(''+process.env.REACT_APP_URL+'/api/logout');
       navigate('/');
       setCustomer(null);
       }
