@@ -65,7 +65,7 @@ export default function NewCustomerPage() {
 
   useEffect(()=>{
         
-    Axios.post(''+process.env.REACT_APP_URL+'/auth/currentUser').then((response) =>{
+    Axios.post(''+process.env.REACT_APP_URL+'/api/currentUser').then((response) =>{
     
                 setCustomer(response.data)
             })
