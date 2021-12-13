@@ -25,7 +25,7 @@ export default function CreateUser() {
     return (
        
         <Grid container
-            margin = {5}  
+            marginTop = {5}  
             
 
         >   
@@ -45,38 +45,43 @@ export default function CreateUser() {
               }}>
                 <Form>
                     <Grid container spacing = {2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md ={6}>
                             <Textfield
                             name='adi'
                             label='Temsilci Adı 
                             '/>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md ={6}>
+
                             <Textfield
                             name='soyadi'
                             label='Temsilci  Soyadı
                             '/>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md ={6}>
+
                             <Textfield
                             name='mail'
                             label='Temsilci Mail Adresi
                             '/>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md ={6}>
+
                             <Select
                             name='departman'
                             label='Departman'
                             options={departmans}
                             />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md ={6}>
+
                             <Textfield
                             name='username'
                             label='Kullanıcı Adı'
                             />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md ={6}>
+
                             <Textfield
                             name='password'
                             label='Şifre'

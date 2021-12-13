@@ -107,32 +107,35 @@ export default function EditCustomer() {
                       <Grid item xs={12} >
                        <Typography>Müşteri Bilgileri</Typography>
                     </Grid>
-                    <Grid item xs={4}> 
+                    <Grid item xs={12} md={4}> 
                       <Textfield 
                         name= "firmaAdi"
                         label="Müşteri Ünvanı"
                         />
                     </Grid>
-                    <Grid item xs={4}> 
+                    <Grid item xs={12} md={4}> 
+
                       <Textfield 
                         name= "firmaIlgilisi"
                         label="Müşteri İlgili Kişisi Adı"
                         />
                     </Grid>
-                    <Grid item xs={4}> 
+                    <Grid item xs={12} md={4}> 
+
                       <Select
                         name= "firmaAractipi"
                         label="Müşteri Araç Tipi"
                         options={trailers}
                         />
                     </Grid>
-                    <Grid item xs={6}> 
+                    <Grid item xs={12} md={6}> 
+
                       <Textfield 
                         name= "firmaMail"
                         label="Müşteri E-Mail Adresi"
                         />
                     </Grid>
-                    <Grid item xs={6}> 
+                    <Grid item xs={12} md={6}> 
                       <Textfield 
                         name= "firmaTelefon"
                         label="Müşteri Telefon Numarası"
@@ -144,14 +147,16 @@ export default function EditCustomer() {
                         label="Müşteri Adresi"
                         />
                     </Grid>
-                    <Grid item xs={6}> 
+                    <Grid item xs={12} md={6}> 
+
                       <Select
                         name= "firmaSehir"
                         label="Müşteri Şehir"
                         options={city}
                         />
                     </Grid>
-                    <Grid item xs={6}> 
+                    <Grid item xs={12} md={6}> 
+
                       <Select
                         name='firmaUlke'
                         label='Müşteri Ülkesi'

@@ -218,27 +218,27 @@ export default function NewCustomerPage() {
                   <Typography>Müşteri Bilgileri</Typography>
                 </Grid>
 
-                  <Grid item xs={6}> 
+                  <Grid item xs={12} md={6}> 
                 <Textfield 
                   name= "firmaAdi"
                   label="Müşteri Ünvanı"
                   />
                 </Grid>
                 
-                <Grid item xs={6}> 
+                <Grid item xs={12} md={6}> 
                 <Textfield 
                   name= "firmaIlgilisi"
                   label="Müşteri İlgili Kişisi Adı"
                   />
                 </Grid>
-                <Grid item xs={6}> 
+                <Grid item xs={12} md={6}> 
                   <Select
                     name='musteriRisk'
                     label='Müşteri Risk Seviyesi'
                     options={riskseviyesi} 
                     />
                 </Grid>
-                <Grid item xs={6}> 
+                <Grid item xs={12} md={6}> 
                 <Select
                   name= "firmaAractipi"
                   label="Müşteri Araç Tipi"
@@ -246,20 +246,20 @@ export default function NewCustomerPage() {
                   />
                 </Grid>
 
-                <Grid item xs={4}> 
+                <Grid item xs={12} md={4}> 
                 <Textfield 
                   name= "firmaMail"
                   label="Müşteri E-Mail Adresi"
                   />
                 </Grid>
                 
-                <Grid item xs={4}> 
+                <Grid item xs={12} md={4}> 
                 <Textfield 
                   name= "firmaTelefon"
                   label="Müşteri Telefon Numarası"
                   />
                 </Grid>
-                <Grid item xs={4}> 
+                <Grid item xs={12} md={4}> 
                 <Select
                   name= "firmaSehir"
                   label="Müşteri Şehir"

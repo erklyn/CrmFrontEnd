@@ -5,10 +5,6 @@ import Axios from 'axios';
 import {Formik , Form} from 'formik';
 import Textfield from '../Models/UIWrappers/Textfield';
 import Button from '../Models/UIWrappers/Button';
-
-
-
-
 Axios.defaults.withCredentials = true;
    
 
@@ -80,6 +76,7 @@ export default function Customers() {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
+                    wrap
                     >
                         
                         <Grid item xs={12}>
@@ -87,18 +84,16 @@ export default function Customers() {
                             to={`/musteriler/${musteri.id}`}
                             key={musteri.id}
                             className ='musteri-bar'>
-                        <div className='musteri-inside'>
-                        <Typography>Firma:</Typography>
-                        <h3 className='musteri-h3'>{musteri.firmaAdi}</h3> 
-                        <Typography>Şehir:</Typography>
-                        <h3 className='musteri-h3'>{musteri.firmaSehir}</h3>
-                        <Typography>Araç Tipi:</Typography>
-                        <h3 className='musteri-h3'>{musteri.firmaAractipi}</h3> 
-                        <Typography>Risk Derecesi:</Typography>
-                        <h3 className='musteri-h3'>{musteri.musteriRisk}</h3> 
-                      
-                        
-                        </div>
+                            <div className='musteri-inside'>
+                                    <Typography>Firma:</Typography>
+                                        <h3 className='musteri-h3'>{musteri.firmaAdi}</h3> 
+                                    <Typography>Şehir:</Typography>
+                                        <h3 className='musteri-h3'>{musteri.firmaSehir}</h3>
+                                    <Typography>Araç Tipi:</Typography>
+                                        <h3 className='musteri-h3'>{musteri.firmaAractipi}</h3> 
+                                    <Typography>Risk Derecesi:</Typography>
+                                        <h3 className='musteri-h3'>{musteri.musteriRisk}</h3> 
+                            </div>
                         </Link>
                         </Grid>
                         

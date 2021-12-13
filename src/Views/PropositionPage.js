@@ -58,7 +58,7 @@ export default function PropositionPage() {
 
                   
                   <Grid item xs={2}>
-                  <Link to={'/musteriler/'+a.musteriID}>
+                  <Link className ='musteri-link' to={'/musteriler/'+a.musteriID}>
                       Müşteriye Dön
                   </Link>
                   </Grid>

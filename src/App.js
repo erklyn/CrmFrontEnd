@@ -14,6 +14,8 @@ import { useCustomer } from "./Controllers/StoreSession";
 import HomePage from './Views/HomePage';
 import Meeting from './Views/Meeting';
 import EditCustomer from './Views/EditCustomer';
+import Navbar from './Models/UIWrappers/Navbar/Navbar';
+import CustomerBar from './Models/UIWrappers/CustomerBar/CustomerBar';
 
 
 Axios.defaults.withCredentials = true;
@@ -28,12 +30,12 @@ const { customer } = useCustomer();
   if(customer) {
     return (
     <div>
-      <Header/>
+      <Navbar/>
       <Routes>
       <Route exact path="/" element={<HomePage />}/>
       <Route path="login" element={<LoginPage />}/>
       <Route path="register" element={<CreateUser />}/>
-      <Route path="musteriler" element={<Customers />}/>
+      <Route path="musteriler" element={<CustomerBar />}/>
       <Route path="musteriler/yeni-teklif/:musteriID" element={<CreatePropositionPage />}/>
       <Route path="musteriler/yeni-gorusme/:musteriID" element={<CreateMeeting />}/>
       <Route path='musteriler/:id' element={<CustomerPage />} />

@@ -262,7 +262,9 @@ export default function CustomerPage() {
 
                   </Grid>
                   <Grid item xs={12}> 
+                  
                   <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+params.id+''}> Yeni Teklif Ekle</Link>
+
                   </Grid>
                   {teklifler.map(teklif => {
                 return (

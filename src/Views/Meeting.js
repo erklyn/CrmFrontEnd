@@ -57,8 +57,8 @@ export default function Meeting() {
                   marginLeft={2}>
 
                   
-                  <Grid item xs={2}>
-                  <Link to={'/musteriler/'+a.musteriID}>
+                  <Grid item xs={12}>
+                  <Link className = 'musteri-link' to={'/musteriler/'+a.musteriID}>
                       Müşteriye Dön
                   </Link>
                   </Grid>

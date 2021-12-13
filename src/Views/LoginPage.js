@@ -9,6 +9,8 @@ import Textfield from '../Models/UIWrappers/Textfield';
 import Button from '../Models/UIWrappers/Button';
 import { useCustomer } from "../Controllers/StoreSession";
 import { useNavigate } from 'react-router-dom';
+import { Logo } from '../Models/UIWrappers/Styles/Navbar.style';
+import LogoImg from '../Models/UIWrappers/Assets/Logo.png'
 
 
 
@@ -32,14 +34,15 @@ export default function LoginPage() {
         <Grid container
 
                 direction='column'
-                justifyContent ='flex-end'
+                justifyContent ='center'
                 alignItems = 'center'
                 
-                margin = {5}
+                marginTop = {5}
                
                 
         >
-            <Container >
+            <Container>
+                <Logo src={LogoImg}></Logo>
             <Formik initialValues ={{
                 ...INITIAL_FORM_STATE,
 
@@ -59,7 +62,7 @@ export default function LoginPage() {
                 
               }}>
                 <Form>
-                    <Grid container direction = 'column' spacing = {2} >
+                    <Grid container direction = 'column'  justifyContent='center' >
                     <Grid item xs={8}>
                         <Textfield
                         name='username'

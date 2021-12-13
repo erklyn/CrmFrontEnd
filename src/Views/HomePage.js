@@ -24,16 +24,17 @@ export default function HomePage() {
     
     return (
         <div>
-            <h1>Hoşgeldin {kullaniciAdi}</h1>
+            <h1>  Hoşgeldin {kullaniciAdi}</h1>
             <Grid container
             wrap
-            spacing={2}>
+            spacing={2}
+            marginY={1}>
                 
-            <Grid item xs={6}>
-                <Typography> Son Görüşmeler </Typography>
+            <Grid item xs={12} md={6}>
+                <Typography>  Son Görüşmeler </Typography>
                 <Gorusmeler/>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
             <Typography>Son Yapılan Teklifler</Typography>
                 <Teklifler/>
             </Grid>
