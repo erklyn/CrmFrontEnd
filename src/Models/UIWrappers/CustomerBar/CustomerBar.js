@@ -74,22 +74,22 @@ export default function CustomerBar() {
         </div>
         {musteriler.map(musteri => {
             return (
-                <CustomersWrapper container>
+                <CustomersWrapper container marginBottom={2}>
                     <CustomersWrapper xs={12}>
-                <CustomerLink to={`/musteriler/${musteri.id}`} key={musteri.id}>
-                    <CustomerName align='center' variant='h6'>
-                        Firma: {musteri.firmaAdi}
-                    </CustomerName>
-                    <CustomerCity variant='h6'>
-                       Şehir : {musteri.firmaSehir}
-                    </CustomerCity>
-                    <CustomerRisk variant='h6' > 
-                       Müşteri Risk : {musteri.musteriRisk}
-                    </CustomerRisk>
-                    <CustomerVehicleType variant='h6'>
-                       Müşteri Araç Tipi :  {musteri.firmaAractipi}
-                    </CustomerVehicleType>
-                </CustomerLink>
+                    <CustomerLink to={`/musteriler/${musteri.id}`} key={musteri.id}>
+                        <CustomerName align='center' variant='h6'>
+                            Firma: {musteri.firmaAdi}
+                        </CustomerName>
+                        <CustomerCity variant='h6'>
+                        Şehir : {musteri.firmaSehir}
+                        </CustomerCity>
+                        <CustomerRisk variant='h6' > 
+                        Müşteri Risk : {musteri.musteriRisk}
+                        </CustomerRisk>
+                        <CustomerVehicleType variant='h6'>
+                        Müşteri Araç Tipi :  {musteri.firmaAractipi}
+                        </CustomerVehicleType>
+                    </CustomerLink>
                 </CustomersWrapper>
            </CustomersWrapper>
             )

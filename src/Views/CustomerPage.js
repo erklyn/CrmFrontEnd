@@ -209,7 +209,7 @@ export default function CustomerPage() {
                  </Paper>
                  </Grid>
                  <Grid item xs={12}> 
-                  <Link className='musteri-link' to={'/musteri/'+params.id+''}> Yeni Görüşme Ekle</Link>
+                  <Link className='musteri-link' to={'/musteriler/yeni-gorusme/'+params.id+''}> Yeni Görüşme Ekle</Link>
                   </Grid>
 
                  {gorusme.map(gorusme => {
@@ -244,6 +244,7 @@ export default function CustomerPage() {
                <Grid container
                 marginTop={1}
                 spacing={1}
+                marginBottom={2}
                 direction="row">
               
                <Grid item xs={12} md={12}>
@@ -257,7 +258,7 @@ export default function CustomerPage() {
                   </Grid>
                   <Grid item xs={12}> 
                   
-                  <Link className='musteri-link' to={'/teklif/belongTo/'+params.id+''}> Yeni Teklif Ekle</Link>
+                  <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+params.id+''}> Yeni Teklif Ekle</Link>
 
                   </Grid>
                   {teklifler.map(teklif => {

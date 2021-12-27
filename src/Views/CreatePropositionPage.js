@@ -76,8 +76,14 @@ export default function CreatePropositionPage() {
     
     
     return (
-        <Grid container marginTop={1} spacing={1}
-        direction="row">
+        <Grid 
+        container
+        marginTop={1}
+        marginBottom={2}
+        spacing={1}
+        direction="row" 
+        
+        >
             <Container>
             <Formik
             initialValues ={{

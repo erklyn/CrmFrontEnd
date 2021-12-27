@@ -1,9 +1,7 @@
 import './App.css';
 import { Routes, Route} from "react-router-dom";
 import NewCustomerPage from './Views/NewCustomerPage';
-import Customers from './Views/Customers';
 import CustomerPage from './Views/CustomerPage';
-import Header from './Models/UIWrappers/Header';
 import PropositionPage from './Views/PropositionPage';
 import CreatePropositionPage from './Views/CreatePropositionPage';
 import LoginPage from './Views/LoginPage';

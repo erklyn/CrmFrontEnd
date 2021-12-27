@@ -50,6 +50,7 @@ export default function PropositionPage() {
                return (
                 <Grid container
                 marginTop={2}
+                marginBottom={2}
                 spacing={2}
                 direction="row"
                 wrap>
@@ -57,7 +58,7 @@ export default function PropositionPage() {
                   marginLeft={2}>
 
                   
-                  <Grid item xs={2}>
+                  <Grid item xs={12}>
                   <Link className ='musteri-link' to={'/musteriler/'+a.musteriID}>
                       Müşteriye Dön
                   </Link>

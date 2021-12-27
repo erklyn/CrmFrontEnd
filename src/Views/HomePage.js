@@ -23,12 +23,12 @@ export default function HomePage() {
     
     
     return (
-        <div>
+        <Grid container margin={1}>
             <h1>  Hoşgeldin {kullaniciAdi}</h1>
             <Grid container
             wrap
             spacing={2}
-            marginY={1}
+            marginY={2}
             >
                 
             <Grid item xs={12} md={6} spacing={2}>
@@ -45,6 +45,6 @@ export default function HomePage() {
             </Grid>
             </Grid>
             
-        </div>
+        </Grid>
     )
 }
