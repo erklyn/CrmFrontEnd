@@ -32,7 +32,7 @@ function Navbar() {
 
     
         const handleClick = () => {
-            Axios.get(''+process.env.REACT_APP_URL+'/api/logout');
+            Axios.get(''+process.env.REACT_APP_URL+'/api/auth/logout');
            navigate('/');
               setCustomer(null);
          }
