@@ -31,9 +31,8 @@ export default function EditCustomer() {
            
 
     function  getData() {
-          Axios.get(process.env.REACT_APP_URL+'/api/musteriler/'+params.id).then((response)=>{
+          Axios.get(process.env.REACT_APP_URL+'/api/musteri/'+params.id).then((response)=>{
           setInıtvalues(response.data);
-          
         })
     }
 
@@ -69,6 +68,13 @@ export default function EditCustomer() {
 
 
    let navigate = useNavigate();
+   if(!initvalues) {
+     return (
+     <div> Bir Hata Oldu </div>
+     )
+    } else {
+
+    
 
    return (
       initvalues.map(a => {
@@ -181,6 +187,6 @@ export default function EditCustomer() {
   
 };
 
-
+}
 
 

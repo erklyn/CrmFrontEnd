@@ -18,13 +18,18 @@ height: 7vh;
 border-width: 3px;
 display: flex;
 flex-direction: row;
-justify-content: space-evenly;
+justify-content: space-around;
 align-items: center;
 width: 100%;
 border-radius: 25px;
 border-style: solid;
 border-color: #2E8BC0;
 text-decoration: none;
+&:hover {
+    border-color: purple;
+    border-width: 5px;
+    
+}
 
 `;
 

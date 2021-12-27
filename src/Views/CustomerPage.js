@@ -13,11 +13,11 @@ Axios.defaults.withCredentials = true;
 
 
 export default function CustomerPage() {
-
-
     const [musteri , setMusteri] = useState([]);
     const [gorusme , setGorusme] = useState([]);
     const [teklifler , setTeklifler] = useState([]);
+   
+
 
     let params = useParams();
     
@@ -69,7 +69,7 @@ export default function CustomerPage() {
                    
                  <Grid container justifyContent = 'end' marginBottom ={1}>
                    <Grid item>
-                      <Link className='musteri-link' to ={'/musteriler/duzenle/'+params.id}>
+                      <Link className='musteri-link' to ={'/musteriler/edit/'+params.id}>
                         Müşteri Düzenle
                       </Link>
                    </Grid>

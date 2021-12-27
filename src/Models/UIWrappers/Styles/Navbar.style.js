@@ -44,6 +44,7 @@ export const NavbarLinkExtended = styled(Link)`
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   margin: 10px;
+  
 `;
 
 export const NavbarLinkContainer = styled.div`

@@ -40,7 +40,7 @@ const { customer } = useCustomer();
       <Route path="yeni-musteri" element={<NewCustomerPage />} />
       <Route path="musteri/teklif/:id" element={<PropositionPage />} />
       <Route path="musteri/gorusme/:id" element={<Meeting />} />
-      <Route path="musteriler/duzenle/:id" element={<EditCustomer />} />
+      <Route path="musteriler/edit/:id" element={<EditCustomer />} />
       <Route path="musteriler/teklif/duzenle/:id" element={<Meeting />} />
       <Route path="musteriler/gorusme/duzenle/:id" element={<Meeting />} />
       </Routes>
