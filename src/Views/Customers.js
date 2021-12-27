@@ -11,7 +11,6 @@ Axios.defaults.withCredentials = true;
 
 export default function Customers() {
     const [musteriler , setMusteriler] = useState([]);
-    const apiPath  = ''+process.env.REACT_APP_URL+'/api/get';
     const INITIAL_FORM_STATE = {
         searchValue:'',
     };
@@ -22,7 +21,7 @@ export default function Customers() {
     
 
     useEffect(()=>{    
-        Axios.get(apiPath).then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/musteri').then((response)=>{
           setMusteriler(response.data);
         })
       },[]);
@@ -38,7 +37,7 @@ export default function Customers() {
             }}
             
             onSubmit={ (values) =>{
-              Axios.get(""+process.env.REACT_APP_URL+"/api/get/firmaAdi/"+values.searchValue).then((response)=>{
+              Axios.get(""+process.env.REACT_APP_URL+"/api/musteri/name/"+values.searchValue).then((response)=>{
                 setMusteriler(response.data);
               })
             }}

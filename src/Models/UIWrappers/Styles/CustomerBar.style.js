@@ -30,7 +30,6 @@ text-decoration: none;
 
 export const CustomerName = styled(Typography)`
 color: #2e8bc0;
-height: 100%;
 font-size: x-large;
 
 
@@ -38,8 +37,8 @@ font-size: x-large;
 `;
 export const CustomerCity = styled(Typography)`
 color: #2e8bc0;
-height: 100%;
 font-size: x-large;
+
 
 @media (max-width: 700px) {
     display: none;
@@ -47,10 +46,8 @@ font-size: x-large;
 
 
 `;
-
 export const CustomerRisk = styled(Typography)`
 color: #2e8bc0;
-height: 100%;
 
 @media (max-width: 800px) {
     display: none;
@@ -60,13 +57,11 @@ height: 100%;
 `;
 export const CustomerVehicleType = styled(Typography)`
 color: #2e8bc0;
-height: 100%;
 font-size: x-large;
 
 @media (max-width: 900px) {
     display: none;
 }
-
 `;
 
 

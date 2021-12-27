@@ -13,7 +13,7 @@ export default function HomePage() {
     let kullaniciAdi = customer.adi;
     useEffect(()=>{
         
-        Axios.post(''+process.env.REACT_APP_URL+'/api/currentUser').then((response) =>{
+        Axios.post(''+process.env.REACT_APP_URL+'/api/auth/currentUser').then((response) =>{
         
                     setCustomer(response.data)
                 })
@@ -28,9 +28,10 @@ export default function HomePage() {
             <Grid container
             wrap
             spacing={2}
-            marginY={1}>
+            marginY={1}
+            >
                 
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} spacing={2}>
                 <Typography>  Son Görüşmeler </Typography>
                 <Gorusmeler/>
             </Grid>

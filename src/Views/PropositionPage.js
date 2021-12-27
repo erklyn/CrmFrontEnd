@@ -32,7 +32,7 @@ export default function PropositionPage() {
     }
     
     useEffect(()=>{
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/tekteklif/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/teklif/'+params.id+'').then((response)=>{
           setMusteri(response.data);
           
         })

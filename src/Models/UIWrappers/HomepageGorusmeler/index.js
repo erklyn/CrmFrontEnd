@@ -24,16 +24,10 @@ export default function HomePageGorusme() {
 
    }
 
-    const [gorusmeler , setGorusmeler] = useState([{}]);
+    const [gorusmeler , setGorusmeler] = useState([]);
     useEffect(()=>{
-        
-        
-
-        
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/gorusmeler').then((response)=>{
+        Axios.get(process.env.REACT_APP_URL+'/api/homepage/main').then((response)=>{
           setGorusmeler(response.data);
-          
-          
         })
       },[]);
     return (
@@ -43,7 +37,6 @@ export default function HomePageGorusme() {
        >
         
            <Paper>
-
            {gorusmeler.map( a => {
                
                return(
@@ -53,7 +46,6 @@ export default function HomePageGorusme() {
             <Typography>
                 {a.temsilciAdi}  , {a.aracTipi} için {getDate(a.tarih)} tarihinde bir görüşme yaptı.
             </Typography>
-
             </Link>
             </Paper>
             </Grid>

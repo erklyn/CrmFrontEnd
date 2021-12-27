@@ -73,7 +73,7 @@ export default function CreateMeeting() {
             validationSchema ={FORM_VALIDATION}
             onSubmit={ (values ,{ resetForm}) =>{
               
-              Axios.post(""+process.env.REACT_APP_URL+"/api/insert/gorusme",{values}).then(()=>{
+              Axios.post(""+process.env.REACT_APP_URL+"/api/gorusme",{values}).then(()=>{
                 alert('succesfull insert');
                 
               });

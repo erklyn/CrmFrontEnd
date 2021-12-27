@@ -88,7 +88,7 @@ export default function CreatePropositionPage() {
               validationSchema ={FORM_VALIDATION}
               onSubmit={ (values ,{ resetForm}) =>{
                 
-                Axios.post(""+process.env.REACT_APP_URL+"/api/insert/teklif",{values}).then(()=>{
+                Axios.post(""+process.env.REACT_APP_URL+"/api/teklif",{values}).then(()=>{
                   alert('succesfull insert');
                   
                 });

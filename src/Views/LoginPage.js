@@ -49,12 +49,12 @@ export default function LoginPage() {
               }}
              
               onSubmit={ (values) =>{
-                instance.post(""+process.env.REACT_APP_URL+"/api/login",{values}).then((response)=>{
+                instance.post(""+process.env.REACT_APP_URL+"/api/auth/login",{values}).then((response)=>{
                     setCustomer(response.data)
                     navigate('/');
                     
                   });
-                  instance.post(''+process.env.REACT_APP_URL+'/api/currentUser').then((response) =>{
+                  instance.post(''+process.env.REACT_APP_URL+'/api/auth/currentUser').then((response) =>{
         
                     setCustomer(response.data)
                 })

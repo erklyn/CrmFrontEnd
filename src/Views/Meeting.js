@@ -32,7 +32,7 @@ export default function Meeting() {
     }
     
     useEffect(()=>{
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/singleGorusme/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/gorusme/'+params.id+'').then((response)=>{
           setGorusme(response.data);
           
         })

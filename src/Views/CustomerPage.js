@@ -4,6 +4,10 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom'
 import Axios from 'axios';
 import { Paper } from '@mui/material';
+import { CustomerLink, CustomersWrapper } from '../Models/UIWrappers/Styles/CustomerBar.style';
+import { GorusmeAracTipi, GorusmeKisi, GorusmeKonusu, GorusmeTarihi } from '../Models/UIWrappers/Styles/Gorusme.style';
+import { TeklifAracTipi, TeklifBirimFiyat, TeklifDurum, TeklifTarih } from '../Models/UIWrappers/Styles/Teklif.style';
+
 
 Axios.defaults.withCredentials = true;
 
@@ -34,15 +38,15 @@ export default function CustomerPage() {
     }
     
     useEffect(()=>{
-        Axios.get(''+process.env.REACT_APP_URL+'/api/musteriler/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/musteri/'+params.id+'').then((response)=>{
           setMusteri(response.data);
           
         })
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/gorusme/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/gorusme/belong/'+params.id+'').then((response)=>{
           setGorusme(response.data);
           
         })
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/teklif/'+params.id+'').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/teklif/belong/'+params.id+'').then((response)=>{
           setTeklifler(response.data);
           
         })
@@ -205,7 +209,7 @@ export default function CustomerPage() {
                  </Paper>
                  </Grid>
                  <Grid item xs={12}> 
-                  <Link className='musteri-link' to={'/musteriler/yeni-gorusme/'+params.id+''}> Yeni Görüşme Ekle</Link>
+                  <Link className='musteri-link' to={'/musteri/'+params.id+''}> Yeni Görüşme Ekle</Link>
                   </Grid>
 
                  {gorusme.map(gorusme => {
@@ -218,28 +222,18 @@ export default function CustomerPage() {
                   spacing={2}
                   >
                       
-                      <Grid item xs={12}>
-                      
-                      <Link
+                      <CustomersWrapper item xs={12}>
+                      <CustomerLink
                        className='musteri-bar' 
                        to={'/musteri/gorusme/'+gorusme.id}
                       >
-                      <div className='musteri-inside'>
-                      <Typography>Görüşme Tarihi:</Typography>
-                      <h3 className='musteri-h3'>{getDate(gorusme.tarih)}</h3> 
-                      <Typography>Görüşme Araç Tipi:</Typography>
-                      <h3 className='musteri-h3'>{gorusme.aracTipi}</h3> 
-                      <Typography>Görüşme Konusu:</Typography>
-                      <h3 className='musteri-h3'>{gorusme.konusu}</h3>
-                      <Typography>Görüşen Kişi:</Typography>
-                      <h3 className='musteri-h3'>{gorusme.temsilciAdi}</h3> 
-                    
-                      </div>
+                      <GorusmeTarihi>{getDate(gorusme.tarih)}</GorusmeTarihi>
+                      <GorusmeAracTipi>{gorusme.aracTipi}</GorusmeAracTipi>
+                      <GorusmeKonusu>Konu: {gorusme.konusu}</GorusmeKonusu>
+                      <GorusmeKisi>{gorusme.temsilciAdi}</GorusmeKisi> 
+                     </CustomerLink>
+                    </CustomersWrapper>
                       
-                     </Link>
-                    </Grid>
-                      
-
                   </Grid>
                     )
                   })}
@@ -263,7 +257,7 @@ export default function CustomerPage() {
                   </Grid>
                   <Grid item xs={12}> 
                   
-                  <Link className='musteri-link' to={'/musteriler/yeni-teklif/'+params.id+''}> Yeni Teklif Ekle</Link>
+                  <Link className='musteri-link' to={'/teklif/belongTo/'+params.id+''}> Yeni Teklif Ekle</Link>
 
                   </Grid>
                   {teklifler.map(teklif => {
@@ -276,26 +270,24 @@ export default function CustomerPage() {
                     spacing={2}
                     >
                         
-                        <Grid item xs={12}>
+                        <CustomersWrapper item xs={12}>
                         
-                        <Link
+                        <CustomerLink
                          className='musteri-bar' 
                          to={'/musteri/teklif/'+teklif.id}
                         >
-                        <div className='musteri-inside'>
-                        <Typography>Teklif Tarihi:</Typography>
-                        <h3 className='musteri-h3'>{getDate(teklif.teklifTarih)}</h3> 
-                        <Typography>Teklif Durumu:</Typography>
-                        <h3 className='musteri-h3'>{teklif.durum}</h3> 
-                        <Typography>Teklif Araç Tipi:</Typography>
-                        <h3 className='musteri-h3'>{teklif.aracTipi}</h3>
-                        <Typography>Teklif Birim Fiyatı:</Typography>
-                        <h3 className='musteri-h3'>{teklif.birimFiyati}</h3> 
                       
-                        </div>
+                        <TeklifTarih>{getDate(teklif.teklifTarih)}</TeklifTarih>
                         
-                       </Link>
-                      </Grid>
+                        <TeklifDurum>Durum: {teklif.durum}</TeklifDurum>
+
+                        <TeklifAracTipi>{teklif.aracTipi}</TeklifAracTipi>
+
+                        <TeklifBirimFiyat>{teklif.birimFiyati + teklif.paraBirimi }</TeklifBirimFiyat>
+                      
+                       
+                       </CustomerLink>
+                      </CustomersWrapper>
                         
 
                     </Grid>

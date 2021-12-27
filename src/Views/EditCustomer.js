@@ -97,7 +97,7 @@ export default function EditCustomer() {
           }}
           validationSchema ={FORM_VALIDATION}
           onSubmit={ (values ,{ resetForm}) =>{
-            Axios.post(""+process.env.REACT_APP_URL+"/api/update/musteri/"+params.id,{values}).then(()=>{
+            Axios.put(""+process.env.REACT_APP_URL+"/api/musteri/"+params.id,{values}).then(()=>{
               alert('succesfull insert');
             });
               resetForm();

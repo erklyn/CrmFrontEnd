@@ -30,7 +30,7 @@ export default function HomePageTeklifler() {
         
 
         
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/teklifler').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/teklif/main').then((response)=>{
           setTeklifler(response.data);
           
           

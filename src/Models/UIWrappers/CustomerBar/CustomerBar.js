@@ -16,7 +16,7 @@ import Button from '../Button';
 
 export default function CustomerBar() {
     const [musteriler , setMusteriler] = useState([]);
-    const apiPath  = ''+process.env.REACT_APP_URL+'/api/get';
+    
     const INITIAL_FORM_STATE = {
         searchValue:'',
     };
@@ -27,7 +27,7 @@ export default function CustomerBar() {
     
 
     useEffect(()=>{    
-        Axios.get(apiPath).then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/musteri').then((response)=>{
           setMusteriler(response.data);
         })
       },[]);
@@ -40,7 +40,7 @@ export default function CustomerBar() {
         }}
         
         onSubmit={ (values) =>{
-          Axios.get(""+process.env.REACT_APP_URL+"/api/get/firmaAdi/"+values.searchValue).then((response)=>{
+          Axios.get(""+process.env.REACT_APP_URL+"/api/musteri/name/"+values.searchValue).then((response)=>{
             setMusteriler(response.data);
           })
         }}
@@ -48,6 +48,8 @@ export default function CustomerBar() {
                 <Form>
                     <Grid container
                     marginTop={1}
+                    marginLeft={1}
+                    marginRight={1}
                     spacing={2}
                     direction="row"
                     justifyContent="center"

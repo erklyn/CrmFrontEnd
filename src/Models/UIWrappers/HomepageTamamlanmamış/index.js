@@ -30,7 +30,7 @@ export default function HomePageTamamlanmamışTeklifler() {
         
 
         
-        Axios.get(''+process.env.REACT_APP_URL+'/api/get/teklifRed').then((response)=>{
+        Axios.get(''+process.env.REACT_APP_URL+'/api/teklif/red').then((response)=>{
           setRedTeklifler(response.data);
           
           

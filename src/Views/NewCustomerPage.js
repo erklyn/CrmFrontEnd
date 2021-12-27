@@ -65,10 +65,10 @@ export default function NewCustomerPage() {
 
   useEffect(()=>{
         
-    Axios.post(''+process.env.REACT_APP_URL+'/api/currentUser').then((response) =>{
+                Axios.post(''+process.env.REACT_APP_URL+'/api/auth/currentUser').then((response) =>{
     
-                setCustomer(response.data)
-            })
+                   setCustomer(response.data)
+                 })
             
     
   },[]);
@@ -202,7 +202,7 @@ export default function NewCustomerPage() {
           validationSchema ={FORM_VALIDATION}
           onSubmit={ (values ,{ resetForm}) =>{
             
-            Axios.post(""+process.env.REACT_APP_URL+"/api/insert/musteri",{values}).then(()=>{
+            Axios.post(""+process.env.REACT_APP_URL+"/api/musteri",{values}).then(()=>{
               alert('succesfull insert');
               
             });
