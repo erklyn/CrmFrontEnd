@@ -75,8 +75,9 @@ export default function CustomerBar() {
         {musteriler.map(musteri => {
             return (
                 <CustomersWrapper container>
+                    <CustomersWrapper xs={12}>
                 <CustomerLink to={`/musteriler/${musteri.id}`} key={musteri.id}>
-                    <CustomerName align='center' variant='h5'>
+                    <CustomerName align='center' variant='h6'>
                         Firma: {musteri.firmaAdi}
                     </CustomerName>
                     <CustomerCity variant='h6'>
@@ -89,6 +90,7 @@ export default function CustomerBar() {
                        Müşteri Araç Tipi :  {musteri.firmaAractipi}
                     </CustomerVehicleType>
                 </CustomerLink>
+                </CustomersWrapper>
            </CustomersWrapper>
             )
         })}
